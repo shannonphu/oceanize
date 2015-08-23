@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	.header
+		img(src= "http://www.cliparthut.com/clip-arts/183/sun-clip-art-183444.png")
+		h1= title
+
+	canvas(id="ocean", resize="true")
+	canvas(id="night-content", resize="true")
+	canvas(id="day-content", resize="true")
+
+	script(type="text/paperscript", src="javascripts/night.js", canvas="night-content")
+	script(type="text/paperscript", src="javascripts/day.js", canvas="day-content")
+	script(type="text/paperscript", src="javascripts/water.js", canvas="ocean")
+	script(src="/javascripts/socket.js")
