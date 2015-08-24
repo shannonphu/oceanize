@@ -71,6 +71,8 @@ h1 {
 
 .chatroom-details {
   width: 25%;
+  min-width: 200px;
+  max-width: 300px;
   height: 30%;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 7px;
@@ -81,9 +83,11 @@ h1 {
   .chatroom-details .chatroom-tab {
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px; }
-  .chatroom-details input {
-    width: 70%;
-    background-color: rgba(255, 255, 255, 0.3); }
+  .chatroom-details .form {
+    width: 100%;
+    padding: 5px; }
+    .chatroom-details .form button {
+      float: right; }
   .chatroom-details #chatroom-users {
     height: 200px; }
 
@@ -98,43 +102,46 @@ img {
 
 .night-message {
   background-color: rgba(255, 255, 255, 0.7); }
+  .night-message input {
+    color: black; }
 
 .day-message {
   background-color: rgba(0, 0, 0, 0.5);
   color: white; }
+  .day-message input {
+    color: white; }
 
-#message {
-  height: 60%;
+.chat {
   width: 50%;
+  min-width: 300px;
   position: absolute;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
   padding: 0.5em;
   z-index: 5;
   border: 3px solid white;
   border-top: 3px solid black;
-  overflow: scroll; }
-  #message p {
-    font-size: 18px;
-    border-bottom: 1px solid darkgrey;
-    padding: 2px; }
-  #message h6 {
-    font-size: 25px;
-    padding: 0;
-    margin: 0;
-    text-align: center; }
-  #message .form {
-    width: 100%;
+  background-color: rgba(255, 255, 255, 0.5); }
+  .chat #message {
     padding: 5px;
-    /*position: fixed;*/
-    position: absolute;
-    bottom: 0; }
+    overflow: scroll;
+    height: 90%; }
+    .chat #message p {
+      font-size: 18px;
+      border-bottom: 1px solid darkgrey;
+      padding: 2px; }
+    .chat #message h6 {
+      font-size: 25px;
+      padding: 0;
+      margin: 0;
+      text-align: center; }
+  .chat .form {
+    width: 100%;
+    padding: 5px; }
+    .chat .form button {
+      float: right; }
 
 .no-rotate {
   transform: rotate(0);

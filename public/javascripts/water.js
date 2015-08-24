@@ -7,6 +7,7 @@ $('#night-content').height($(window).height() * canvasProportion);
 $('#day-content').hide();
 var dayTime = false;
 $('body').addClass('night');
+$('#message').addClass('night-message');
 
 // bottle setup
 $('<img id="bottle" src="//cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png">').insertAfter($('#ocean'));
@@ -84,11 +85,32 @@ function createPath(strength) {
 
 function onResize() {
 	if (path) return;
-		//path.remove();
 	size = view.bounds.size * [2, 1];
 	path = createPath(0.1);
-	bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
 }
+
+var waitForFinalEvent = (function () {
+  var timers = {};
+  return function (callback, ms, uniqueId) {
+    if (!uniqueId) {
+      uniqueId = "Don't call this twice without a uniqueId";
+    }
+    if (timers[uniqueId]) {
+      clearTimeout (timers[uniqueId]);
+    }
+    timers[uniqueId] = setTimeout(callback, ms);
+  };
+})();
+
+$(window).resize(function () {
+    waitForFinalEvent(function(){
+      $('#night-content').width($(window).width());
+      $('#day-content').width($(window).width());
+      bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
+      $('.chat').height($(window).height() * 0.6);
+      $('.chatroom-details').css('top', $(window).height() - $('.chatroom-tab').height() - 25);
+    }, 500, "some unique string");
+});
 
 function onMouseMove(event) {
 	var location = path.getNearestLocation(event.point);
@@ -151,51 +173,44 @@ $('.header img').click(function() {
 	// set day time graphics
 	if (dayTime) {
 		$('.header img').attr("src", "//www.4blackberry.net/data/programs/images/182363_18296.png");
+		$('.header h1').css('color', 'black');
+
 		$('#night-content').slideUp('slow');
 		$('#day-content').fadeIn();
+
 		$('body').removeClass('night');
 		$('body').addClass('day');
-		$('.header h1').css('color', 'black');
+		$('input').css('border-color', 'black');
+
 		$('.chatroom-details input').css('color', 'white');
 		$('.chatroom-details').css('background-color', 'rgba(0,0,0,0.5)');
+
+		$('#chatroom-users').css('color', 'white');
+		
 		$('#message').removeClass('night-message');
 		$('#message').addClass('day-message');
 	} else {
 		$('.header img').attr("src", "//www.cliparthut.com/clip-arts/183/sun-clip-art-183444.png");
+		$('.header h1').css('color', 'white');
+
 		$('#day-content').hide();
 		$('#night-content').slideDown();
+
 		$('body').removeClass('day');
 		$('body').addClass('night');
-		$('.header h1').css('color', 'white');
+		$('input').css('border-color', 'white');
+		
 		$('.chatroom-details input').css('color', 'black');
 		$('.chatroom-details').css('background-color', 'rgba(255,255,255,0.7)');
+
+		$('#chatroom-users').css('color', 'black');
+		
 		$('#message').removeClass('day-message');
 		$('#message').addClass('night-message');
 	}
 });
 
 // bottle and chat view manipulation
-
-bottle.click(function() {
-	// deal with chatroom details
-	tabOpen = true;
-	animateChatroomDetails();
-
-	// deal w/ bottle
-	bottle.removeClass('rotate');
-	bottle.addClass('no-rotate').stop();
-	bottle.animate({
-		bottom:($(window).height() - $('.header').height()) / 2
-	}, 'slow'); 
-	if ($('#message').length === 0) {
-		$('<div id="message"><h6>' + message + '</h6><div class="form"><input></input><button class="msg-btn">></button></div></div>').insertAfter($('.header')).hide();
-	}
-	$('#message').slideDown();
-	if (dayTime)
-		$('#message').addClass('day-message');
-	else
-		$('#message').addClass('night-message');
-});
 
 function animateChatroomDetails() {
 	// if chatroom tab is open, slide it down else slide up
@@ -211,13 +226,39 @@ function animateChatroomDetails() {
 	tabOpen = !tabOpen;
 }
 
+// deal with clicking of objects
+
+bottle.click(function() {
+	// deal with chatroom details
+	tabOpen = true;
+	animateChatroomDetails();
+
+	// deal w/ bottle
+	bottle.removeClass('rotate');
+	bottle.addClass('no-rotate').stop();
+	bottle.animate({
+		bottom:($(window).height() - $('.header').height()) / 2
+	}, 'slow'); 
+	if ($('.chat').length === 0) {
+		$('<div class="chat"><div id="message"><h6>' + message + '</h6></div><div class="form"><input></input><button class="msg-btn">></button></div></div>').insertAfter($('.header')).hide();
+		$('.chat').height($(window).height() * 0.6);
+		//$('.form').css('bottom', $(window).height() - $('.header') - $('#message'));
+	}
+	//$('#message').slideDown();
+	$('.chat').slideDown();
+	if (dayTime)
+		$('#message').addClass('day-message');
+	else
+		$('#message').addClass('night-message');
+});
+
 $(document).mousedown(function (e)
 {
-    if (!$('#message').is(e.target) // if the target of the click isn't the container...
-        && $('#message').has(e.target).length === 0 // ... nor a descendant of the container
+    if (!$('.chat').is(e.target) // if the target of the click isn't the container...
+        && $('.chat').has(e.target).length === 0 // ... nor a descendant of the container
         && !$('.header img').is(e.target)) // ...and isnt the change time icon 
     {
-        $('#message').slideUp();
+        $('.chat').slideUp();
         bottle.animate({
         	bottom:'-15px'
         }, 'slow'); 

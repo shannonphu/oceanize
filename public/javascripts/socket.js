@@ -1,6 +1,9 @@
 // Connect to the Node.js Server
 io = io.connect();
 
+// initial defaults
+var nameSet = false;
+
 // utility shake
 
 (function ($) {
@@ -37,12 +40,19 @@ io = io.connect();
 // deal with announcement system
 
 function post() {
-	if ($('#message input').val().length === 0) {
-		$('#message').shake();
+    if (!nameSet) {
+        io.emit('announce', "Set your chatroom name first in the 'Members' tab.");
+        $('.chat').shake();
+        return;
+    }
+
+	if ($('.chat input').val().length === 0) {
+		$('.chat').shake();
 		return;
-	};
-	io.emit('process message', $('#message input').val());
-	$('#message input').val('');
+	}
+
+	io.emit('process message', $('.chat input').val());
+	$('.chat input').val('');
 }
 
 $('body').on("click", ".msg-btn", function() {
@@ -53,7 +63,7 @@ $(document).keypress(function(e) {
     if (e.which == 13) {
         if ($('.chatroom-details input').is(':focus'))
             submitName();
-        else if ($('#message input').is(':focus'))
+        else if ($('.chat input').is(':focus'))
             post();
     }
 });
@@ -70,7 +80,8 @@ function submitName() {
         $('.chatroom-details input').shake();
         return;
     }
-    $('.header input').val('');
+    $('.chatroom-details input').val('');
+    nameSet = true;
     io.emit("join", name);
 }
 
