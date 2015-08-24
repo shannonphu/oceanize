@@ -69,10 +69,13 @@ $(document).keypress(function(e) {
 });
 
 io.on('post-message', function (message, user) {
-	$('#message').append('<p>' + user + ": " + message + '</p>');
+    appendMessage('<p>' + user + ": " + message + '</p>');
 });
 
-
+function appendMessage(msg) {
+    $('#message').append(msg);
+    $('#message').animate({ scrollTop: $("#message")[0].scrollHeight}, 1000);
+}
 
 // set name for client in chat room
 
@@ -93,7 +96,7 @@ $('body').on("click", ".name-btn", function() {
 
 // update list of people in chat room
 io.on("announcement", function(announcement) {
-    $("#message").append("<p>" + announcement + "</p>");
+    appendMessage("<p>" + announcement + "</p>")
 });
 
 io.on("chatroom-update", function(people) {

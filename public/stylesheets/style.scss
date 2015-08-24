@@ -99,13 +99,6 @@ h1 {
 		background-color: rgba(255,255,255,0.5);
 		padding: 5px;
 	}
-	// input {
-	// 	//width: 90%;
-	// 	background-color: rgba(255,255,255,0.3);
-	// }
-	// button {
-	// 	float: right;
-	// }
 	.form {
 		width: 100%;
 		padding: 5px;
@@ -145,7 +138,7 @@ img {
 }
 
 .chat {
-	width: 50%;
+	width: 30%;
 	min-width: 300px;
 	position: absolute;
 	left:0;
@@ -163,7 +156,7 @@ img {
 	#message {
 
 		padding: 5px;
-		overflow: scroll;
+		overflow-y: scroll;
 		height: 90%;
 
 		p {

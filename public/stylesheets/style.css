@@ -112,7 +112,7 @@ img {
     color: white; }
 
 .chat {
-  width: 50%;
+  width: 30%;
   min-width: 300px;
   position: absolute;
   left: 0;
@@ -126,7 +126,7 @@ img {
   background-color: rgba(255, 255, 255, 0.5); }
   .chat #message {
     padding: 5px;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 90%; }
     .chat #message p {
       font-size: 18px;
