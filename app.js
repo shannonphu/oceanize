@@ -68,18 +68,30 @@ var io = require('socket.io').listen(server, function() {
 });
 
 var users = 0;
+var people = {};
 
 // A user connects to the server (opens a socket)
-io.sockets.on('connection', function (socket) {
+io.sockets.on('connection', function (client) {
     users++;
     console.log("Num users: " + users);
 
-    socket.on('disconnect', function() {
+    client.on('join', function(name) {
+      people[client.id] = name;
+      console.log(people);
+      io.sockets.emit("chatroom-update", people);
+      io.sockets.emit("announcement", name + " has joined the chat");
+    });
+
+    client.on('message', function(message) {
+      io.sockets.emit('post-message', message, people[client.id]);
+    });
+
+    client.on('disconnect', function() {
       users--;
+      io.sockets.emit("announcement", people[client.id] + "has left the chat");
+      delete people[client.id];
+      io.sockets.emit("update-people", people)
       console.log("user disconnected");
     });
 
-    socket.on('message', function(message) {
-      io.emit('post-message', message);
-    });
 });

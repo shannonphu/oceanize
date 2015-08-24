@@ -57,6 +57,12 @@ h1 {
 	text-align: center;
 }
 
+#chatroom-users {
+	width: 200px;
+	height: 100px;
+	background-color: lightblue;
+}
+
 img {
 	width: 3em;
 	float: left;

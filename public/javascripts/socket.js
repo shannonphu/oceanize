@@ -45,7 +45,7 @@ function post() {
 	$('input').val('');
 }
 
-$('body').on("click", "button", function() {
+$('body').on("click", ".msg-btn", function() {
 	post();
 });
 
@@ -55,7 +55,38 @@ $(document).keypress(function(e) {
     }
 });
 
-io.on('post-message', function (message) {
-	$('#message').append('<p>' + message + '</p>');
+io.on('post-message', function (message, user) {
+	$('#message').append('<p>' + user + " says: " + message + '</p>');
 });
 
+
+// set name for client
+function submitName() {
+    var name = $('.header input').val();
+    if (name === "") {
+        $('.header input').shake();
+        return;
+    }
+    io.emit("join", name);
+}
+
+$('body').on("click", ".name-btn", function() {
+    console.log("click to join");
+    submitName();
+});
+
+// update list of people in chat room
+io.on("announcement", function(announcement) {
+    $("#message").append(announcement);
+});
+
+io.on("chatroom-update", function(people) {
+    $("#chatroom-users").empty();
+    console.log(people);
+    // for (var user in people) {
+    //     $('#chatroom-users').append(name);
+    // }
+    $.each(people, function(clientid, name) {
+        $('#chatroom-users').append('<p>' + name + '</p>');
+    });
+});

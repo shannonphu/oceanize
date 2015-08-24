@@ -65,8 +65,8 @@ function createPath(strength) {
 }
 
 function onResize() {
-	if (path)
-		path.remove();
+	if (path) return;
+		//path.remove();
 	size = view.bounds.size * [2, 1];
 	path = createPath(0.1);
 }
@@ -172,7 +172,7 @@ bottle.click(function() {
 		bottom:($(window).height() - $('.header').height()) / 2
 	}, 'slow'); 
 	if ($('#message').length === 0) {
-		$('<div id="message"><h6>' + message + '</h6><div class="form"><input></input><button>></button></div></div>').insertAfter($('.header')).hide();
+		$('<div id="message"><h6>' + message + '</h6><div class="form"><input></input><button class="msg-btn">></button></div></div>').insertAfter($('.header')).hide();
 	}
 	$('#message').slideDown();
 	//$('.form').css('margin-top', $('#message').height()); //- $('#message h6').height() - $('.form').height());
