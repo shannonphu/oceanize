@@ -73,13 +73,12 @@ var people = {};
 // A user connects to the server (opens a socket)
 io.sockets.on('connection', function (client) {
     users++;
-    console.log("Num users: " + users);
 
     client.on('join', function(name) {
       people[client.id] = name;
       console.log(people);
       io.sockets.emit("chatroom-update", people);
-      announce(name + " has joined the chat");
+      announce(name + " has joined the chat.");
     });
 
     client.on('announce', function(msg) {
@@ -87,7 +86,7 @@ io.sockets.on('connection', function (client) {
     });
 
     function announce(msg) {
-      io.sockets.emit("announcement", msg);
+      io.emit("announcement", msg);
     };
 
     client.on('process message', function(message) {
@@ -96,10 +95,14 @@ io.sockets.on('connection', function (client) {
 
     client.on('disconnect', function() {
       users--;
-      io.sockets.emit("announcement", people[client.id] + " has left the chat");
+      var disconnectedUser = people[client.id];
+      if (disconnectedUser)
+        io.sockets.emit("announcement", people[client.id] + " has left the chat.");
+      else
+        io.sockets.emit("announcement", "A stranger has left the chat.");
       delete people[client.id];
-      io.sockets.emit("update-people", people)
-      console.log("user disconnected");
+      console.log(people);
+      io.sockets.emit("chatroom-update", people);
     });
 
 });

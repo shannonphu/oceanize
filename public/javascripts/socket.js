@@ -41,7 +41,7 @@ var nameSet = false;
 
 function post() {
     if (!nameSet) {
-        io.emit('announce', "Set your chatroom name first in the 'Members' tab.");
+        $('#message').append('<p>' + "Set your chatroom name first in the 'Members' tab." + '</p>')
         $('.chat').shake();
         return;
     }
@@ -71,6 +71,8 @@ $(document).keypress(function(e) {
 io.on('post-message', function (message, user) {
 	$('#message').append('<p>' + user + ": " + message + '</p>');
 });
+
+
 
 // set name for client in chat room
 
