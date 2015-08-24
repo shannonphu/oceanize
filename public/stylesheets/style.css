@@ -1,174 +1,164 @@
 html, body {
-	padding: 0;
-	margin: 0;
-	font-family: 'Dosis', arial, sans-serif;
-}
+  padding: 0;
+  margin: 0;
+  font-family: 'Dosis', arial, sans-serif; }
 
 p {
-	padding: 0;
-	margin: 0;
-}
+  padding: 0;
+  margin: 0; }
 
-.day, .night {
-	-webkit-transition: background-color 1s ease-out;
-    -moz-transition: background-color 1s ease-out;
-    -o-transition: background-color 1s ease-out;
-    transition: background-color 1s ease-out;
-}
+input {
+  padding: 5px;
+  width: 80%;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  font-family: "Dosis", Helvetica, Arial, sans-serif; }
 
-.day {
-	background-color: rgb(224, 226, 227);
-}
+input:focus, button:focus {
+  outline: 0; }
 
-.night {
-	background-color: rgb(0, 18, 70);
-}
+button {
+  border-radius: 5px;
+  background-color: white;
+  border: none;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  padding: 0; }
 
 canvas {
-	display: inline-block;
-}
+  display: inline-block; }
 
 h1 {
-	margin: 0;
-	padding: 0;
-	color: white;
-	background-color: transparent;
-	text-align: center;
-	font: 4em "Dosis", Helvetica, Arial, sans-serif;
-	font-weight: 600;
-	display: inline-block;
-}
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: transparent;
+  text-align: center;
+  font: 4em "Dosis", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  display: inline-block; }
+
+.day, .night {
+  -webkit-transition: background-color 1s ease-out;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out; }
+
+.day {
+  background-color: #e0e2e3; }
+
+.night {
+  background-color: #001246; }
 
 /* Scale canvas with resize attribute to full size */
 #ocean {
-    width: 100%;
-    height: 200px;
-    position: fixed;
-    bottom: 0;
-    margin: 0;
-}
+  width: 100%;
+  height: 200px;
+  position: fixed;
+  bottom: 0;
+  margin: 0; }
 
 #night-content, #day-content {
-	height: 60%;
-	width: 100%;
-}
+  height: 60%;
+  width: 100%; }
 
 .header {
-	text-align: center;
-}
+  text-align: center; }
 
-#chatroom-users {
-	width: 200px;
-	height: 100px;
-	background-color: lightblue;
-}
+.chatroom-details {
+  width: 25%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 7px;
+  margin-left: 1em;
+  position: absolute;
+  bottom: 0; }
+  .chatroom-details input {
+    color: white;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.3); }
+  .chatroom-details #chatroom-users {
+    height: 200px; }
 
 img {
-	width: 3em;
-	float: left;
-}
+  width: 3em;
+  float: left; }
 
 #bottle {
-	position: absolute;
-	bottom: -15px;
-	width: 2em;
-}
+  position: absolute;
+  bottom: -15px;
+  width: 2em; }
 
 .night-message {
-	background-color: rgba(255,255,255,0.7);
-}
+  background-color: rgba(255, 255, 255, 0.7); }
 
 .day-message {
-	background-color: rgba(0,0,0,0.5);
-	color: white;
-}
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white; }
 
 #message {
-	height: 60%;
-	width: 50%;
-
-	position:absolute;
-	left:0;
-	right:0;
-	margin-left:auto;
-	margin-right:auto;
-
-	top: 0;
-	bottom: 0;
-	margin-top: auto;
-	margin-bottom: auto;
-
-	padding: 0.5em;
-	z-index: 5;
-	border: 3px solid white;
-	border-top: 3px solid black;
-	overflow: scroll;
-}
-
-#message p {
-	font-size: 18px;
-	border-bottom: 1px solid darkgrey;
-	padding: 2px;
-}
-
-#message h6 {
-	font-size: 25px;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-}
-
-.form {
-	width: 100%;
-	padding: 5px;
-	/*position: fixed;*/
-	position: absolute;
-	bottom: 0;
-}
-
-input {
-	padding: 5px;
-	width: 80%;
-	font-size: 14px;
-	background-color: transparent;
-	border:none;
-	border-bottom: 1px solid white;
-	font-family: "Dosis", Helvetica, Arial, sans-serif;
-}
-
-input:focus, button:focus {
-	outline:0;
-}
-
-button {
-	border-radius: 100%;
-	background-color: white;
-	border: none;
-	width: 25px;
-	height: 25px;
-	margin: 5px;
-}
+  height: 60%;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0.5em;
+  z-index: 5;
+  border: 3px solid white;
+  border-top: 3px solid black;
+  overflow: scroll; }
+  #message p {
+    font-size: 18px;
+    border-bottom: 1px solid darkgrey;
+    padding: 2px; }
+  #message h6 {
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+    text-align: center; }
+  #message .form {
+    width: 100%;
+    padding: 5px;
+    /*position: fixed;*/
+    position: absolute;
+    bottom: 0; }
 
 .no-rotate {
-	 transform: rotate(0);
-	  -ms-transform: rotate(0); /* IE 9 */
-	  -moz-transform: rotate(0); /* Firefox */
-	  -webkit-transform: rotate(0); /* Safari and Chrome */
-	  -o-transform: rotate(0); /* Opera */
-	  -webkit-transition: all 0.5s ease;
-	  -moz-transition: all 0.5s ease;
-	  -o-transition: all 0.5s ease;
-	  transition: all 0.5s ease;
-}
+  transform: rotate(0);
+  -ms-transform: rotate(0);
+  /* IE 9 */
+  -moz-transform: rotate(0);
+  /* Firefox */
+  -webkit-transform: rotate(0);
+  /* Safari and Chrome */
+  -o-transform: rotate(0);
+  /* Opera */
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
 
 .rotate {
-	 transform: rotate(25deg);
-	  -ms-transform: rotate(25deg); /* IE 9 */
-	  -moz-transform: rotate(25deg); /* Firefox */
-	  -webkit-transform: rotate(25deg); /* Safari and Chrome */
-	  -o-transform: rotate(25deg); /* Opera */
-	  -webkit-transition: all 0.5s ease;
-	  -moz-transition: all 0.5s ease;
-	  -o-transition: all 0.5s ease;
-	  transition: all 0.5s ease;
-}
+  transform: rotate(25deg);
+  -ms-transform: rotate(25deg);
+  /* IE 9 */
+  -moz-transform: rotate(25deg);
+  /* Firefox */
+  -webkit-transform: rotate(25deg);
+  /* Safari and Chrome */
+  -o-transform: rotate(25deg);
+  /* Opera */
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+
+/*# sourceMappingURL=style.css.map */

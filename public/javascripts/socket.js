@@ -37,12 +37,12 @@ io = io.connect();
 // deal with announcement system
 
 function post() {
-	if ($('input').val().length === 0) {
+	if ($('#message input').val().length === 0) {
 		$('#message').shake();
 		return;
 	};
-	io.emit('message', $('input').val());
-	$('input').val('');
+	io.emit('process message', $('#message input').val());
+	$('#message input').val('');
 }
 
 $('body').on("click", ".msg-btn", function() {
@@ -56,7 +56,7 @@ $(document).keypress(function(e) {
 });
 
 io.on('post-message', function (message, user) {
-	$('#message').append('<p>' + user + " says: " + message + '</p>');
+	$('#message').append('<p>' + user + ": " + message + '</p>');
 });
 
 
@@ -67,25 +67,23 @@ function submitName() {
         $('.header input').shake();
         return;
     }
+    $('.header input').val('');
     io.emit("join", name);
 }
 
 $('body').on("click", ".name-btn", function() {
-    console.log("click to join");
     submitName();
 });
 
 // update list of people in chat room
 io.on("announcement", function(announcement) {
-    $("#message").append(announcement);
+    $("#message").append("<p>" + announcement + "</p>");
 });
 
 io.on("chatroom-update", function(people) {
     $("#chatroom-users").empty();
     console.log(people);
-    // for (var user in people) {
-    //     $('#chatroom-users').append(name);
-    // }
+
     $.each(people, function(clientid, name) {
         $('#chatroom-users').append('<p>' + name + '</p>');
     });

@@ -141,6 +141,7 @@ $('.header img').click(function() {
 		$('body').removeClass('night');
 		$('body').addClass('day');
 		$('.header h1').css('color', 'black');
+		$('.header input').css('color', 'black');
 		$('#message').removeClass('night-message');
 		$('#message').addClass('day-message');
 	} else {
@@ -150,6 +151,7 @@ $('.header img').click(function() {
 		$('body').removeClass('day');
 		$('body').addClass('night');
 		$('.header h1').css('color', 'white');
+		$('.header input').css('color', 'white');
 		$('#message').removeClass('day-message');
 		$('#message').addClass('night-message');
 	}

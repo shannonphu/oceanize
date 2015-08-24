@@ -82,7 +82,7 @@ io.sockets.on('connection', function (client) {
       io.sockets.emit("announcement", name + " has joined the chat");
     });
 
-    client.on('message', function(message) {
+    client.on('process message', function(message) {
       io.sockets.emit('post-message', message, people[client.id]);
     });
 

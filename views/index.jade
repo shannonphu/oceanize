@@ -4,9 +4,10 @@ block content
 	.header
 		img(src= "http://www.cliparthut.com/clip-arts/183/sun-clip-art-183444.png")
 		h1= title
-		input(type=text name=name)
-		button(class="name-btn") Set
-		#chatroom-users
+		.chatroom-details
+			input(type=text placeholder="Name")
+			button(class="name-btn") Set
+			#chatroom-users
 
 	canvas(id="ocean", resize="true")
 	canvas(id="night-content", resize="true")
