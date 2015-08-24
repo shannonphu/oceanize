@@ -41,7 +41,7 @@ var nameSet = false;
 
 function post() {
     if (!nameSet) {
-        $('#message').append('<p>' + "Set your chatroom name first in the 'Members' tab." + '</p>')
+        appendMessage('<p>' + "Set your chatroom name first in the 'Members' tab." + '</p>');
         $('.chat').shake();
         return;
     }

@@ -39,7 +39,6 @@ h1 {
   background-color: transparent;
   text-align: center;
   font: 4em "Dosis", Helvetica, Arial, sans-serif;
-  font-weight: 600;
   display: inline-block; }
 
 .day, .night {
@@ -50,9 +49,51 @@ h1 {
 
 .day {
   background-color: #e0e2e3; }
+  .day .header h1 {
+    color: black; }
+  .day #message {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white; }
+    .day #message p {
+      border-bottom: 1px solid lightgrey; }
+  .day .form input {
+    color: black; }
+  .day .form button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white; }
+  .day input {
+    border-color: black; }
+  .day .chatroom-details {
+    background-color: rgba(0, 0, 0, 0.5); }
+    .day .chatroom-details input {
+      color: white;
+      border-color: lightgrey; }
+    .day .chatroom-details #chatroom-users {
+      color: white; }
 
 .night {
   background-color: #001246; }
+  .night .header h1 {
+    color: white; }
+  .night #message {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black; }
+    .night #message p {
+      border-bottom: 1px solid darkgrey; }
+  .night .form input {
+    color: white; }
+  .night .form button {
+    background-color: white;
+    color: black; }
+  .night input {
+    border-color: white; }
+  .night .chatroom-details {
+    background-color: rgba(255, 255, 255, 0.7); }
+    .night .chatroom-details input {
+      color: black;
+      border-color: black; }
+    .night .chatroom-details #chatroom-users {
+      color: black; }
 
 /* Scale canvas with resize attribute to full size */
 #ocean {
@@ -68,6 +109,15 @@ h1 {
 
 .header {
   text-align: center; }
+
+img {
+  width: 3em;
+  float: left; }
+
+#bottle {
+  position: absolute;
+  bottom: -15px;
+  width: 2em; }
 
 .chatroom-details {
   width: 25%;
@@ -86,30 +136,12 @@ h1 {
   .chatroom-details .form {
     width: 100%;
     padding: 5px; }
+    .chatroom-details .form input {
+      border-color: black; }
     .chatroom-details .form button {
       float: right; }
   .chatroom-details #chatroom-users {
     height: 200px; }
-
-img {
-  width: 3em;
-  float: left; }
-
-#bottle {
-  position: absolute;
-  bottom: -15px;
-  width: 2em; }
-
-.night-message {
-  background-color: rgba(255, 255, 255, 0.7); }
-  .night-message input {
-    color: black; }
-
-.day-message {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white; }
-  .day-message input {
-    color: white; }
 
 .chat {
   width: 30%;
@@ -130,7 +162,6 @@ img {
     height: 90%; }
     .chat #message p {
       font-size: 18px;
-      border-bottom: 1px solid darkgrey;
       padding: 2px; }
     .chat #message h6 {
       font-size: 25px;

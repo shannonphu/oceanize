@@ -45,9 +45,10 @@ h1 {
 	background-color: transparent;
 	text-align: center;
 	font: 4em "Dosis", Helvetica, Arial, sans-serif;
-	font-weight: 600;
 	display: inline-block;
 }
+
+// Background scene styles
 
 .day, .night {
 	-webkit-transition: background-color 1s ease-out;
@@ -58,13 +59,75 @@ h1 {
 
 .day {
 	background-color: rgb(224, 226, 227);
+	.header h1 {
+		color: black;
+	}
+	#message {
+		background-color: rgba(0,0,0,0.5);
+		color: white;
+		p {
+			border-bottom: 1px solid lightgrey;
+		}
+	}
+	.form {
+		input {
+			color: black;
+		}
+		button {
+			background-color: rgba(0,0,0,0.5);
+			color: white;
+		}
+	}
+	input {
+		border-color: black;
+	}
+	.chatroom-details {
+		background-color: rgba(0,0,0,0.5);
+		input {
+			color: white;
+			border-color: lightgrey;
+		}
+		#chatroom-users {
+			color: white;
+		}
+	}
 }
 
 .night {
 	background-color: rgb(0, 18, 70);
+	.header h1 {
+		color: white;
+	}
+	#message {
+		background-color: rgba(255,255,255,0.7);
+		color: black;
+		p {
+			border-bottom: 1px solid darkgrey;
+		}
+	}
+	.form {
+		input {
+			color: white;
+		}
+		button {
+			background-color: white;
+			color: black;
+		}
+	}
+	input {
+		border-color: white;
+	}
+	.chatroom-details {
+		background-color: rgba(255,255,255,0.7);
+		input {
+			color: black;
+			border-color: black;
+		}
+		#chatroom-users {
+			color: black;
+		}
+	}
 }
-
-
 
 /* Scale canvas with resize attribute to full size */
 #ocean {
@@ -80,8 +143,21 @@ h1 {
 	width: 100%;
 }
 
+// End background scene styles
+
 .header {
 	text-align: center;
+}
+
+img {
+	width: 3em;
+	float: left;
+}
+
+#bottle {
+	position: absolute;
+	bottom: -15px;
+	width: 2em;
 }
 
 .chatroom-details {
@@ -102,6 +178,7 @@ h1 {
 	.form {
 		width: 100%;
 		padding: 5px;
+		input { border-color: black; }
 		button {
 			float: right;
 		}
@@ -111,31 +188,15 @@ h1 {
 	}
 }
 
-img {
-	width: 3em;
-	float: left;
-}
 
-#bottle {
-	position: absolute;
-	bottom: -15px;
-	width: 2em;
-}
+// .night-message {
+// 	background-color: rgba(255,255,255,0.7);
+// }
 
-.night-message {
-	background-color: rgba(255,255,255,0.7);
-	input {
-		color: black;
-	}
-}
-
-.day-message {
-	background-color: rgba(0,0,0,0.5);
-	color: white;
-	input {
-		color: white;
-	}
-}
+// .day-message {
+// 	background-color: rgba(0,0,0,0.5);
+// 	color: white;
+// }
 
 .chat {
 	width: 30%;
@@ -161,7 +222,6 @@ img {
 
 		p {
 			font-size: 18px;
-			border-bottom: 1px solid darkgrey;
 			padding: 2px;
 		}
 

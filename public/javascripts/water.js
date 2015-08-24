@@ -3,11 +3,33 @@ var canvasProportion = 0.7;
 $('#day-content').height($(window).height() * canvasProportion);
 $('#night-content').height($(window).height() * canvasProportion);
 
+function setView () {
+	if (dayTime) {
+		$('.header img').attr("src", "//www.4blackberry.net/data/programs/images/182363_18296.png");
+
+		$('#night-content').slideUp('slow');
+		$('#day-content').fadeIn();
+
+		$('body').removeClass('night');
+		$('body').addClass('day');
+
+	} else {
+
+		$('.header img').attr("src", "//www.cliparthut.com/clip-arts/183/sun-clip-art-183444.png");
+
+		$('#day-content').hide();
+		$('#night-content').slideDown();
+
+		$('body').removeClass('day');
+		$('body').addClass('night');
+	}
+};
+
 // Default to nighttime view
-$('#day-content').hide();
-var dayTime = false;
-$('body').addClass('night');
-$('#message').addClass('night-message');
+// $('#day-content').hide();
+var dayTime = true;
+setView();
+// $('body').addClass('night');
 
 // bottle setup
 $('<img id="bottle" src="//cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png">').insertAfter($('#ocean'));
@@ -166,48 +188,14 @@ $(document).scroll(function() {
     path.fillColor = 'rgba(153, 204, 255,' + opacity + ')';
 });
 
+
+
 // swap content views when click top-left corner button
 
 $('.header img').click(function() {
 	dayTime = !dayTime;
-	// set day time graphics
-	if (dayTime) {
-		$('.header img').attr("src", "//www.4blackberry.net/data/programs/images/182363_18296.png");
-		$('.header h1').css('color', 'black');
-
-		$('#night-content').slideUp('slow');
-		$('#day-content').fadeIn();
-
-		$('body').removeClass('night');
-		$('body').addClass('day');
-		$('input').css('border-color', 'black');
-
-		$('.chatroom-details input').css('color', 'white');
-		$('.chatroom-details').css('background-color', 'rgba(0,0,0,0.5)');
-
-		$('#chatroom-users').css('color', 'white');
-		
-		$('#message').removeClass('night-message');
-		$('#message').addClass('day-message');
-	} else {
-		$('.header img').attr("src", "//www.cliparthut.com/clip-arts/183/sun-clip-art-183444.png");
-		$('.header h1').css('color', 'white');
-
-		$('#day-content').hide();
-		$('#night-content').slideDown();
-
-		$('body').removeClass('day');
-		$('body').addClass('night');
-		$('input').css('border-color', 'white');
-		
-		$('.chatroom-details input').css('color', 'black');
-		$('.chatroom-details').css('background-color', 'rgba(255,255,255,0.7)');
-
-		$('#chatroom-users').css('color', 'black');
-		
-		$('#message').removeClass('day-message');
-		$('#message').addClass('night-message');
-	}
+	// if its daytime, make it nighttime
+	setView();
 });
 
 // bottle and chat view manipulation
@@ -244,7 +232,6 @@ bottle.click(function() {
 		$('.chat').height($(window).height() * 0.6);
 		//$('.form').css('bottom', $(window).height() - $('.header') - $('#message'));
 	}
-	//$('#message').slideDown();
 	$('.chat').slideDown();
 	if (dayTime)
 		$('#message').addClass('day-message');
