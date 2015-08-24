@@ -1,9 +1,27 @@
+// Set up canvas size and sky height
 var canvasProportion = 0.7;
 $('#day-content').height($(window).height() * canvasProportion);
 $('#night-content').height($(window).height() * canvasProportion);
 
+// Default to nighttime view
+$('#day-content').hide();
+var dayTime = false;
+$('body').addClass('night');
+
+// bottle setup
+$('<img id="bottle" src="//cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png">').insertAfter($('#ocean'));
+var bottle = $('#bottle');
+bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
+bottle.addClass('rotate');
+
+// chat room initial default
+$('.chatroom-details').css('top', $(window).height() - $('.chatroom-details').height());
+var message = "Chat:";
+var tabOpen = true;
+
+// Set up wave water
 var opacity = 0.3;
-var waveColor = 'rgba(153, 204, 255,' + opacity + ')'; //'rgb(153, 204, 255)';
+var waveColor = 'rgba(153, 204, 255,' + opacity + ')';
 
 var values = {
 	friction: 0.8,
@@ -69,6 +87,7 @@ function onResize() {
 		//path.remove();
 	size = view.bounds.size * [2, 1];
 	path = createPath(0.1);
+	bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
 }
 
 function onMouseMove(event) {
@@ -116,20 +135,16 @@ function updateWave(path) {
 	path.smooth();
 }
 
-// Scroll amount
+// End wave setup
+
+// Change wave opacity as scroll down (currently not used)
 $(document).scroll(function() {
     var pxFromTop = $(document).scrollTop();
     opacity = pxFromTop / $(document).height() + 0.3;
     path.fillColor = 'rgba(153, 204, 255,' + opacity + ')';
 });
 
-// swap content views
-
-$('#day-content').hide();
-
-var dayTime = false;
-
-$('body').addClass('night');
+// swap content views when click top-left corner button
 
 $('.header img').click(function() {
 	dayTime = !dayTime;
@@ -141,7 +156,8 @@ $('.header img').click(function() {
 		$('body').removeClass('night');
 		$('body').addClass('day');
 		$('.header h1').css('color', 'black');
-		$('.header input').css('color', 'black');
+		$('.chatroom-details input').css('color', 'white');
+		$('.chatroom-details').css('background-color', 'rgba(0,0,0,0.5)');
 		$('#message').removeClass('night-message');
 		$('#message').addClass('day-message');
 	} else {
@@ -151,23 +167,21 @@ $('.header img').click(function() {
 		$('body').removeClass('day');
 		$('body').addClass('night');
 		$('.header h1').css('color', 'white');
-		$('.header input').css('color', 'white');
+		$('.chatroom-details input').css('color', 'black');
+		$('.chatroom-details').css('background-color', 'rgba(255,255,255,0.7)');
 		$('#message').removeClass('day-message');
 		$('#message').addClass('night-message');
 	}
 });
 
-// bottle and message board
-
-var message = "Chat:";
-
-// bottle jquery
-$('<img id="bottle" src="//cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png">').insertAfter($('#ocean'));
-var bottle = $('#bottle');
-bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
-bottle.addClass('rotate');
+// bottle and chat view manipulation
 
 bottle.click(function() {
+	// deal with chatroom details
+	tabOpen = true;
+	animateChatroomDetails();
+
+	// deal w/ bottle
 	bottle.removeClass('rotate');
 	bottle.addClass('no-rotate').stop();
 	bottle.animate({
@@ -177,12 +191,25 @@ bottle.click(function() {
 		$('<div id="message"><h6>' + message + '</h6><div class="form"><input></input><button class="msg-btn">></button></div></div>').insertAfter($('.header')).hide();
 	}
 	$('#message').slideDown();
-	//$('.form').css('margin-top', $('#message').height()); //- $('#message h6').height() - $('.form').height());
 	if (dayTime)
 		$('#message').addClass('day-message');
 	else
 		$('#message').addClass('night-message');
 });
+
+function animateChatroomDetails() {
+	// if chatroom tab is open, slide it down else slide up
+	if (tabOpen) {
+		$('.chatroom-details').animate({
+			top: $(window).height() - $('.chatroom-tab').height() - 25
+		}, 'slow');
+	} else {
+		$('.chatroom-details').animate({
+			top: $(window).height() - $('.chatroom-details').height()
+		}, 'slow');
+	}
+	tabOpen = !tabOpen;
+}
 
 $(document).mousedown(function (e)
 {
@@ -196,6 +223,9 @@ $(document).mousedown(function (e)
         }, 'slow'); 
         bottle.removeClass('no-rotate');
         bottle.addClass('rotate');
+    }
+    if ($('.chatroom-tab').is(e.target)) {
+    	animateChatroomDetails();	
     }
 });
 

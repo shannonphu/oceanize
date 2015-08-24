@@ -50,8 +50,11 @@ $('body').on("click", ".msg-btn", function() {
 });
 
 $(document).keypress(function(e) {
-    if(e.which == 13) {
-        post();
+    if (e.which == 13) {
+        if ($('.chatroom-details input').is(':focus'))
+            submitName();
+        else if ($('#message input').is(':focus'))
+            post();
     }
 });
 
@@ -59,12 +62,12 @@ io.on('post-message', function (message, user) {
 	$('#message').append('<p>' + user + ": " + message + '</p>');
 });
 
+// set name for client in chat room
 
-// set name for client
 function submitName() {
-    var name = $('.header input').val();
+    var name = $('.chatroom-details input').val();
     if (name === "") {
-        $('.header input').shake();
+        $('.chatroom-details input').shake();
         return;
     }
     $('.header input').val('');

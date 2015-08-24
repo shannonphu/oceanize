@@ -1,7 +1,8 @@
 html, body {
   padding: 0;
   margin: 0;
-  font-family: 'Dosis', arial, sans-serif; }
+  font-family: 'Dosis', arial, sans-serif;
+  overflow: hidden; }
 
 p {
   padding: 0;
@@ -70,13 +71,17 @@ h1 {
 
 .chatroom-details {
   width: 25%;
+  height: 30%;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 7px;
   margin-left: 1em;
   position: absolute;
-  bottom: 0; }
+  bottom: 0;
+  z-index: 5; }
+  .chatroom-details .chatroom-tab {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px; }
   .chatroom-details input {
-    color: white;
     width: 70%;
     background-color: rgba(255, 255, 255, 0.3); }
   .chatroom-details #chatroom-users {
