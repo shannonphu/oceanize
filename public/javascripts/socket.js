@@ -101,8 +101,6 @@ io.on("announcement", function(announcement) {
 
 io.on("chatroom-update", function(people) {
     $("#chatroom-users").empty();
-    console.log(people);
-
     $.each(people, function(clientid, name) {
         $('#chatroom-users').append('<p>' + name + '</p>');
     });

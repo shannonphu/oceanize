@@ -41,7 +41,8 @@ button {
   width: 25px;
   height: 25px;
   margin: 5px;
-  padding: 0; }
+  padding: 0;
+  cursor: pointer; }
 
 canvas {
   display: inline-block; }
@@ -103,15 +104,17 @@ h1 {
     color: black; }
   .night input {
     border-color: white; }
-  .night textarea {
-    color: white; }
   .night .chatroom-details {
     background-color: rgba(255, 255, 255, 0.7); }
+    .night .chatroom-details .chatroom-tab {
+      cursor: pointer; }
     .night .chatroom-details input {
       color: black;
       border-color: black; }
     .night .chatroom-details #chatroom-users {
       color: black; }
+  .night .note textarea, .night .note aside, .night .note input {
+    color: white; }
 
 /* Scale canvas with resize attribute to full size */
 #ocean {
@@ -129,23 +132,26 @@ h1 {
   text-align: center; }
   .header img {
     width: 3em;
-    float: left; }
+    float: left;
+    cursor: pointer; }
   .header #note-btn {
     font-size: 1.2em;
     line-height: 20px;
     padding: 5px;
     height: 30px;
     width: 30px;
+    cursor: pointer;
     float: right; }
 
 #bottle {
   position: absolute;
   bottom: -15px;
-  width: 2em; }
+  width: 2em;
+  cursor: pointer; }
 
 .chatroom-details {
   width: 25%;
-  min-width: 200px;
+  min-width: 250px;
   max-width: 300px;
   height: 30%;
   background-color: rgba(255, 255, 255, 0.7);
@@ -156,14 +162,15 @@ h1 {
   z-index: 5; }
   .chatroom-details .chatroom-tab {
     background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px; }
+    padding: 5px;
+    cursor: pointer; }
   .chatroom-details .form {
-    width: 100%;
     padding: 5px; }
     .chatroom-details .form input {
-      border-color: black; }
+      border-color: black;
+      display: inline; }
     .chatroom-details .form button {
-      float: right; }
+      display: inline; }
   .chatroom-details #chatroom-users {
     height: 200px; }
 
@@ -172,10 +179,22 @@ h1 {
   min-width: 300px;
   position: absolute;
   padding: 0.5em;
-  z-index: 5;
+  z-index: 2;
   border: 3px solid white;
   border-top: 3px solid black;
   background-color: rgba(255, 255, 255, 0.5); }
+  .chat span {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 5;
+    background-color: #f6f6f6;
+    border: 2px solid #ddd;
+    text-align: center;
+    border-radius: 100%;
+    height: 25px;
+    width: 25px;
+    cursor: pointer; }
   .chat #message {
     padding: 5px;
     overflow-y: scroll;
@@ -226,9 +245,10 @@ h1 {
 
 .note {
   height: 100px;
-  width: 100px;
-  z-index: 5;
-  padding: 5px; }
+  width: 200px;
+  z-index: 1;
+  padding: 5px;
+  overflow-y: scroll; }
   .note textarea {
     height: 100%;
     width: 100%;
@@ -237,5 +257,13 @@ h1 {
     font-size: 1em;
     font-family: "Dosis", arial, sans-serif;
     resize: none; }
+  .note input {
+    font-size: 0.9em;
+    padding: 0;
+    display: inline; }
+  .note aside {
+    font-size: 0.9em;
+    display: inline;
+    cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

@@ -9,7 +9,11 @@ $('#note-btn').click(function() {
 function makeNote() {
     var posx = randomX();
     var posy = randomY();
-    $("<div class='note draggable resizable ui-widget-content' style='border:none;background:none;'><textarea></textarea></div>")
+    $("<div class='note draggable resizable ui-widget-content' style='border:none;background:none;'> \
+    	<input type='text' placeholder='Title'></input> \
+    	<aside>Delete</aside> \
+    	<textarea></textarea> \
+    	</div>")
     .css('position', 'absolute')
     .appendTo('.header')
    	.css({
