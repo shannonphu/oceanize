@@ -1,7 +1,10 @@
+$placeholder-color : white;
+$font : 'Dosis', arial, sans-serif;
+
 html, body {
 	padding: 0;
 	margin: 0;
-	font-family: 'Dosis', arial, sans-serif;
+	font-family: $font;
 	overflow: hidden;
 }
 
@@ -17,11 +20,27 @@ input {
 	background-color: transparent;
 	border:none;
 	border-bottom: 1px solid white;
-	font-family: "Dosis", Helvetica, Arial, sans-serif;
+	font-family: $font;
 }
 
-input:focus, button:focus {
+input:focus, button:focus, textarea:focus {
 	outline:0;
+}
+
+::-webkit-input-placeholder,  {
+   color: $placeholder-color;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: $placeholder-color;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $placeholder-color;  
+}
+
+:-ms-input-placeholder {  
+   color: $placeholder-color;  
 }
 
 button {
@@ -44,7 +63,7 @@ h1 {
 	color: white;
 	background-color: transparent;
 	text-align: center;
-	font: 4em "Dosis", Helvetica, Arial, sans-serif;
+	font: 4em $font;
 	display: inline-block;
 }
 
@@ -81,6 +100,7 @@ h1 {
 	input {
 		border-color: black;
 	}
+	textarea { color: black; }
 	.chatroom-details {
 		background-color: rgba(0,0,0,0.5);
 		input {
@@ -117,6 +137,7 @@ h1 {
 	input {
 		border-color: white;
 	}
+	textarea { color: white; }
 	.chatroom-details {
 		background-color: rgba(255,255,255,0.7);
 		input {
@@ -147,12 +168,22 @@ h1 {
 
 .header {
 	text-align: center;
+	img {
+		width: 3em;
+		float: left;
+	}
+	#note-btn {
+		font-size: 1.2em;
+		line-height: 20px;
+		padding: 5px;
+		height: 30px;
+		width: 30px;
+
+		float: right;
+	}
 }
 
-img {
-	width: 3em;
-	float: left;
-}
+
 
 #bottle {
 	position: absolute;
@@ -188,24 +219,11 @@ img {
 	}
 }
 
-
-// .night-message {
-// 	background-color: rgba(255,255,255,0.7);
-// }
-
-// .day-message {
-// 	background-color: rgba(0,0,0,0.5);
-// 	color: white;
-// }
-
 .chat {
 	width: 30%;
 	min-width: 300px;
 	position: absolute;
-	left:0;
-	right:0;
-	margin-left:auto;
-	margin-right:auto;
+
 	padding: 0.5em;
 
 	z-index: 5;
@@ -242,6 +260,8 @@ img {
 	}
 }
 
+// bottle rotation
+
 .no-rotate {
 	 transform: rotate(0);
 	  -ms-transform: rotate(0); /* IE 9 */
@@ -265,3 +285,23 @@ img {
 	  -o-transition: all 0.5s ease;
 	  transition: all 0.5s ease;
 }
+
+// Notes
+
+.note {
+	height: 100px;
+	width: 100px;
+	z-index: 5;
+	padding: 5px;
+
+	textarea {
+		height: 100%;
+		width: 100%;
+		background-color: rgba(255,255,255,0.1);
+		border: none;
+		font-size: 1em;
+		font-family: $font;
+		resize: none;
+	}
+}
+

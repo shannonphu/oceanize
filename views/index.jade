@@ -4,6 +4,7 @@ block content
 	.header
 		img()
 		h1= title
+		button(id="note-btn") +
 		
 	.chatroom-details
 		.chatroom-tab Members
@@ -18,4 +19,5 @@ block content
 	script(type="text/paperscript", src="javascripts/night.js", canvas="night-content")
 	script(type="text/paperscript", src="javascripts/day.js", canvas="day-content")
 	script(type="text/paperscript", src="javascripts/water.js", canvas="ocean")
+	script(src="/javascripts/notes.js")
 	script(src="/javascripts/socket.js")

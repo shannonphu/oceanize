@@ -1,7 +1,7 @@
 html, body {
   padding: 0;
   margin: 0;
-  font-family: 'Dosis', arial, sans-serif;
+  font-family: "Dosis", arial, sans-serif;
   overflow: hidden; }
 
 p {
@@ -15,10 +15,24 @@ input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid white;
-  font-family: "Dosis", Helvetica, Arial, sans-serif; }
+  font-family: "Dosis", arial, sans-serif; }
 
-input:focus, button:focus {
+input:focus, button:focus, textarea:focus {
   outline: 0; }
+
+::-webkit-input-placeholder {
+  color: white; }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: white; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white; }
+
+:-ms-input-placeholder {
+  color: white; }
 
 button {
   border-radius: 5px;
@@ -38,7 +52,7 @@ h1 {
   color: white;
   background-color: transparent;
   text-align: center;
-  font: 4em "Dosis", Helvetica, Arial, sans-serif;
+  font: 4em "Dosis", arial, sans-serif;
   display: inline-block; }
 
 .day, .night {
@@ -63,6 +77,8 @@ h1 {
     color: white; }
   .day input {
     border-color: black; }
+  .day textarea {
+    color: black; }
   .day .chatroom-details {
     background-color: rgba(0, 0, 0, 0.5); }
     .day .chatroom-details input {
@@ -87,6 +103,8 @@ h1 {
     color: black; }
   .night input {
     border-color: white; }
+  .night textarea {
+    color: white; }
   .night .chatroom-details {
     background-color: rgba(255, 255, 255, 0.7); }
     .night .chatroom-details input {
@@ -109,10 +127,16 @@ h1 {
 
 .header {
   text-align: center; }
-
-img {
-  width: 3em;
-  float: left; }
+  .header img {
+    width: 3em;
+    float: left; }
+  .header #note-btn {
+    font-size: 1.2em;
+    line-height: 20px;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    float: right; }
 
 #bottle {
   position: absolute;
@@ -147,10 +171,6 @@ img {
   width: 30%;
   min-width: 300px;
   position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
   padding: 0.5em;
   z-index: 5;
   border: 3px solid white;
@@ -203,5 +223,19 @@ img {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
+
+.note {
+  height: 100px;
+  width: 100px;
+  z-index: 5;
+  padding: 5px; }
+  .note textarea {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    font-size: 1em;
+    font-family: "Dosis", arial, sans-serif;
+    resize: none; }
 
 /*# sourceMappingURL=style.css.map */

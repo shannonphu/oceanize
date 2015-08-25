@@ -26,15 +26,13 @@ function setView () {
 };
 
 // Default to nighttime view
-// $('#day-content').hide();
 var dayTime = true;
 setView();
-// $('body').addClass('night');
 
 // bottle setup
 $('<img id="bottle" src="//cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png">').insertAfter($('#ocean'));
 var bottle = $('#bottle');
-bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
+bottle.css('left', $(window).width() / 6 * 5);
 bottle.addClass('rotate');
 
 // chat room initial default
@@ -128,8 +126,12 @@ $(window).resize(function () {
     waitForFinalEvent(function(){
       $('#night-content').width($(window).width());
       $('#day-content').width($(window).width());
-      bottle.css('left', $(window).width() / 2 - $('#bottle').width() / 2);
+      var bottleMaxLeft = $(window).width() - $('.chat').outerWidth() / 2 - bottle.width() / 2;
+      if (bottleMaxLeft > $(window).width() - 100)
+      	bottleMaxLeft = $(window).width() - 100;
+      bottle.css('left', bottleMaxLeft);
       $('.chat').height($(window).height() * 0.6);
+      $('.chat').css('margin-left', $(window).width() - $('.chat').outerWidth() - 10);
       $('.chatroom-details').css('top', $(window).height() - $('.chatroom-tab').height() - 25);
     }, 500, "some unique string");
 });
@@ -224,14 +226,15 @@ bottle.click(function() {
 	// deal w/ bottle
 	bottle.removeClass('rotate');
 	bottle.addClass('no-rotate').stop();
-	bottle.animate({
-		bottom:($(window).height() - $('.header').height()) / 2
-	}, 'slow'); 
 	if ($('.chat').length === 0) {
 		$('<div class="chat"><div id="message"><h6>' + message + '</h6></div><div class="form"><input></input><button class="msg-btn">></button></div></div>').insertAfter($('.header')).hide();
 		$('.chat').height($(window).height() * 0.6);
-		//$('.form').css('bottom', $(window).height() - $('.header') - $('#message'));
+		$('.chat').css('margin-left', $(window).width() - $('.chat').outerWidth() - 10);	
+		bottle.css('left', $(window).width() - $('.chat').outerWidth() / 2 - bottle.width() / 2);
 	}
+	bottle.animate({
+		bottom:($(window).height() - $('.header').height()) / 2
+	}, 'slow'); 
 	$('.chat').slideDown();
 	if (dayTime)
 		$('#message').addClass('day-message');
@@ -243,7 +246,11 @@ $(document).mousedown(function (e)
 {
     if (!$('.chat').is(e.target) // if the target of the click isn't the container...
         && $('.chat').has(e.target).length === 0 // ... nor a descendant of the container
-        && !$('.header img').is(e.target)) // ...and isnt the change time icon 
+        && !$('.header img').is(e.target) // ...and isnt the change time icon 
+        && !$('#note-btn').is(e.target) // ...anddd isnt the + note button
+        && !$('.note').is(e.target) // ...andddd isnt a note on the board
+        && !$('textarea').is(e.target)  // or its textarea 
+        && !$('.ui-resizable-handle').is(e.target) )
     {
         $('.chat').slideUp();
         bottle.animate({
@@ -254,6 +261,27 @@ $(document).mousedown(function (e)
     }
     if ($('.chatroom-tab').is(e.target)) {
     	animateChatroomDetails();	
+    }
+    else if ($('.note').is(e.target)) {
+    	// Change this selector to find whatever your 'boxes' are
+    	    var boxes = $(".note");
+
+    	    // Set up click handlers for each box
+    	    boxes.click(function() {
+    	        var el = $(this), // The box that was clicked
+    	            max = 0;
+
+    	        // Find the highest z-index
+    	        boxes.each(function() {
+    	            // Find the current z-index value
+    	            var z = parseInt( $( this ).css( "z-index" ), 10 );
+    	            // Keep either the current max, or the current z-index, whichever is higher
+    	            max = Math.max( max, z );
+    	        });
+
+    	        // Set the box that was clicked to the highest z-index plus one
+    	        el.css("z-index", max + 1 );
+    	    });
     }
 });
 
