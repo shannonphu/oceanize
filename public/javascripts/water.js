@@ -5,7 +5,7 @@ $('#night-content').height($(window).height() * canvasProportion);
 
 function setView () {
 	if (dayTime) {
-		$('.header img').attr("src", "//www.4blackberry.net/data/programs/images/182363_18296.png");
+		$('.header img').attr("src", "//www.starseniorcare.com/images/starseniorcare.png");
 
 		$('#night-content').slideUp('slow');
 		$('#day-content').fadeIn();
@@ -131,7 +131,7 @@ $(window).resize(function () {
       	bottleMaxLeft = $(window).width() - 100;
       bottle.css('left', bottleMaxLeft);
       $('.chat #message').height($(window).height() * 0.6);
-      $('.chat').height($(window).height() * 0.7);
+      $('.chat').height($(window).height() * 0.68);
       if ($('.chat').is(':visible')) {
       	$('#bottle').css('bottom', ($(window).height() - $('.header').height()) / 2);
       }
@@ -262,8 +262,7 @@ $(document).mousedown(function (e)
         && !$('.header img').is(e.target) // ...and isnt the change time icon 
         && !$('#note-btn').is(e.target) // ...anddd isnt the + note button
         && !$('.note').is(e.target) // ...andddd isnt a note on the board
-        && !$('textarea').is(e.target)  // or its textarea 
-        && !$('.ui-resizable-handle').is(e.target) )
+        && !$('.note').children().is(e.target))  // or the note's children elements 
     {
         $('.chat').slideUp();
         bottle.animate({

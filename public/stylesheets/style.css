@@ -129,7 +129,22 @@ h1 {
   width: 100%; }
 
 .header {
-  text-align: center; }
+  text-align: center;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d6d6d+0,000000+100&0.65+0,0+100 */
+  background: -moz-linear-gradient(top, rgba(109, 109, 109, 0.65) 0%, transparent 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(109, 109, 109, 0.65)), color-stop(100%, transparent));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(109, 109, 109, 0.65) 0%, transparent 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(109, 109, 109, 0.65) 0%, transparent 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(109, 109, 109, 0.65) 0%, transparent 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, rgba(109, 109, 109, 0.65) 0%, transparent 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a66d6d6d', endColorstr='#00000000',GradientType=0 );
+  /* IE6-9 */ }
   .header img {
     width: 3em;
     float: left;
