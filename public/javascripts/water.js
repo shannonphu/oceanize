@@ -132,7 +132,9 @@ $(window).resize(function () {
       bottle.css('left', bottleMaxLeft);
       $('.chat #message').height($(window).height() * 0.6);
       $('.chat').height($(window).height() * 0.7);
-      $('#bottle').css('bottom', ($(window).height() - $('.header').height()) / 2);
+      if ($('.chat').is(':visible')) {
+      	$('#bottle').css('bottom', ($(window).height() - $('.header').height()) / 2);
+      }
       $('.chat').css('margin-left', $(window).width() - $('.chat').outerWidth() - 10);
       $('.chatroom-details').css('top', $(window).height() - $('.chatroom-tab').height() - 25);
     }, 500, "some unique string");
