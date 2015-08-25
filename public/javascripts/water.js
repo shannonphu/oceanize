@@ -273,10 +273,6 @@ $(document).mousedown(function (e)
     if ($('.chatroom-tab').is(e.target)) {
     	animateChatroomDetails();	
     }    
-    // if clicked delete, delete the note
-    else if ($('.note aside').is(e.target)) {
-    	console.log("delete note");
-    } 
     // if not deleting, bring to front
     else if ($('.note').is(e.target)) {
 		// increase z-index to bring note to top when clicked

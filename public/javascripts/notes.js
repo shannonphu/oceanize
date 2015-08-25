@@ -6,6 +6,11 @@ $('#note-btn').click(function() {
 	makeNote();
 });
 
+// delete note clicked delete on
+$(document).on('click', '.note aside', function() {
+    $(this).parent().remove();
+});
+
 function makeNote() {
     var posx = randomX();
     var posy = randomY();
