@@ -40,6 +40,9 @@ $('.chatroom-details').css('top', $(window).height() - $('.chatroom-details').he
 var message = "Chat:";
 var tabOpen = true;
 
+// note holder and title shower div initial default 
+var noteContainer = $("<p id='note-title'></p><div class='note-container'></div>").insertAfter($('.header'));
+
 // Set up wave water
 var opacity = 0.3;
 var waveColor = 'rgba(153, 204, 255,' + opacity + ')';

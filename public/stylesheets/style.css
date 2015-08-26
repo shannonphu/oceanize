@@ -66,6 +66,10 @@ h1 {
   background-color: #e0e2e3; }
   .day .header h1 {
     color: black; }
+  .day #note-title {
+    color: black; }
+  .day .note-container {
+    border-color: rgba(0, 0, 0, 0.2); }
   .day #message {
     background-color: rgba(0, 0, 0, 0.5);
     color: white; }
@@ -94,6 +98,10 @@ h1 {
   background-color: #001246; }
   .night .header h1 {
     color: white; }
+  .night #note-title {
+    color: white; }
+  .night .note-container {
+    border-color: rgba(255, 255, 255, 0.5); }
   .night #message {
     background-color: rgba(255, 255, 255, 0.7);
     color: black; }
@@ -304,5 +312,23 @@ h1 {
     font-size: 0.9em;
     display: inline;
     cursor: pointer; }
+
+#note-title {
+  padding: 0;
+  margin: 0 0 0 10px;
+  height: 25px;
+  width: 100px; }
+
+.note-container {
+  position: absolute;
+  height: 300px;
+  width: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 10px;
+  padding: 1px;
+  border: 2px solid; }
+
+.mini-note {
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
