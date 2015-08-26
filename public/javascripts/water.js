@@ -277,6 +277,8 @@ $(document).mousedown(function (e)
     // if not deleting, bring to front
     else if ($('.note').is(e.target)) {
 		// increase z-index to bring note to top when clicked
+
+		console.log("note");
 	    var boxes = $(".note");
 
 	    // Set up click handlers for each box
@@ -294,8 +296,12 @@ $(document).mousedown(function (e)
 
 	        // Set the box that was clicked to the highest z-index plus one
 	        el.css("z-index", max + 1 );
+	        console.log(max + 1);
 	    });
     }
+});
 
+$(window).bind('beforeunload', function(){
+  return 'oceanize says...';
 });
 

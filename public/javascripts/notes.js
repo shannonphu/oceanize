@@ -14,7 +14,8 @@ $(document).on('click', '.note aside', function() {
 function makeNote() {
     var posx = randomX();
     var posy = randomY();
-    $("<div class='note draggable resizable ui-widget-content' style='border:none;background:none;'> \
+    var newNote = $("<div class='note draggable resizable ui-widget-content' style='border:none;background:none;'> \
+    	<div class='border'><button>-</button><div class='border-body'></div></div> \
     	<input type='text' placeholder='Title'></input> \
     	<aside>Delete</aside> \
     	<textarea></textarea> \
@@ -24,9 +25,11 @@ function makeNote() {
    	.css({
         'left': posx + 'px',
          'top': posy + 'px',
-         'background-color': randomColor(),
-         'border-top': '0.75em solid ' + randomColor()
+         'background-color': randomColor()
     });
+    var borderColor = randomColor();
+   	newNote.find('.border-body').css('background-color', borderColor);
+   	newNote.find('button').css('background-color', borderColor);
     $( ".draggable" ).draggable();
     $( ".resizable" ).resizable();
     noteCount++;

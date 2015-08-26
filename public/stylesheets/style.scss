@@ -112,6 +112,9 @@ h1 {
 			color: white;
 		}
 	}
+	.note {
+		input { border-color: black; }
+	}
 }
 
 .night {
@@ -152,6 +155,7 @@ h1 {
 	}
 	.note {
 		textarea, aside, input { color: white; }
+		input { border-color: lightgrey; }
 	}
 }
 
@@ -194,6 +198,7 @@ h1 {
 		width: 30px;
 		cursor: pointer;
 		float: right;
+		background-color: rgba(255,255,255,0.5);
 	}
 }
 
@@ -325,6 +330,29 @@ h1 {
 	z-index: 1;
 	padding: 5px;
 	overflow-y: scroll;
+	.border {
+		height: 10px;
+		button {
+			color: white;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 0;
+			height: 10px;
+			width: 10%;
+			margin: 0;
+			padding: 0;
+			line-height: 10px;
+		}
+		.border-body {
+			width: 90%;
+			height: 10px;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+	
 	textarea {
 		height: 100%;
 		width: 100%;
