@@ -10,7 +10,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "npm start"//"node app.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
