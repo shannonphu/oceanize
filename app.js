@@ -62,7 +62,7 @@ module.exports = app;
 
 // socket.io server-side
 
-var server = http.createServer(app).listen( 3000 );
+var server = http.createServer(app); //.listen( 3000 );
 var io = require('socket.io').listen(server, function() {
     console.log("Express server listening on port " + app.get('port'));
 });
