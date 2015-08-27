@@ -69,7 +69,7 @@ h1 {
   .day #note-title {
     color: black; }
   .day .note-container {
-    border-color: rgba(0, 0, 0, 0.2); }
+    border-color: rgba(0, 0, 0, 0.6); }
   .day #message {
     background-color: rgba(0, 0, 0, 0.5);
     color: white; }
@@ -134,7 +134,8 @@ h1 {
   height: 200px;
   position: fixed;
   bottom: 0;
-  margin: 0; }
+  margin: 0;
+  z-index: 0; }
 
 #night-content, #day-content {
   height: 60%;
@@ -173,8 +174,8 @@ h1 {
 
 #bottle {
   position: absolute;
-  bottom: -15px;
-  width: 2em;
+  bottom: -40px;
+  width: 20%;
   cursor: pointer; }
 
 .chatroom-details {
@@ -274,7 +275,6 @@ h1 {
 .note {
   height: 100px;
   width: 200px;
-  z-index: 1;
   padding: 5px;
   overflow-y: scroll; }
   .note .border {
@@ -326,7 +326,8 @@ h1 {
   background-color: rgba(255, 255, 255, 0.5);
   margin: 0 10px;
   padding: 1px;
-  border: 2px solid; }
+  border: 2px solid;
+  z-index: 3; }
 
 .mini-note {
   width: 100%; }

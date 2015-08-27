@@ -30,7 +30,8 @@ var dayTime = true;
 setView();
 
 // bottle setup
-$('<img id="bottle" src="//cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png">').insertAfter($('#ocean'));
+//http://cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png
+$('<img id="bottle" src="../images/anchor.png">').insertAfter($('#ocean'));
 var bottle = $('#bottle');
 bottle.css('left', $(window).width() / 6 * 5);
 bottle.addClass('rotate');
@@ -136,9 +137,9 @@ $(window).resize(function () {
       $('.chat #message').height($(window).height() * 0.6);
       $('.chat').height($(window).height() * 0.68);
       if ($('.chat').is(':visible')) {
-      	$('#bottle').css('bottom', ($(window).height() - $('.header').height()) / 2);
+      	$('#bottle').css('bottom', ($(window).height() - $('.header').height()) / 2 - $('#bottle').height() / 4);
       }
-      $('.chat').css('margin-left', $(window).width() - $('.chat').outerWidth() - 10);
+      $('.chat').css('margin-left', $(window).width() - $('.chat').outerWidth());
       $('.chatroom-details').css('top', $(window).height() - $('.chatroom-tab').height() - 25);
     }, 500, "some unique string");
 });
@@ -249,7 +250,7 @@ bottle.click(function() {
 		bottle.css('left', $(window).width() - $('.chat').outerWidth() / 2 - bottle.width() / 2);
 	}
 	bottle.animate({
-		bottom:($(window).height() - $('.header').height()) / 2
+		bottom:($(window).height() - $('.header').height()) / 2 - $('#bottle').height() / 4
 	}, 'slow'); 
 	$('.chat').slideDown();
 	if (dayTime)
@@ -265,11 +266,15 @@ $(document).mousedown(function (e)
         && !$('.header img').is(e.target) // ...and isnt the change time icon 
         && !$('#note-btn').is(e.target) // ...anddd isnt the + note button
         && !$('.note').is(e.target) // ...andddd isnt a note on the board
-        && !$('.note').children().is(e.target))  // or the note's children elements 
+        && !$('.note .border').children().is(e.target) // not border
+        && !$('.note').children().is(e.target)  // or the note's children elements 
+        && !$('.mini-note').is(e.target)
+        && !$('.note-container').is(e.target) ) // note container
+        // then slide the chat up
     {
         $('.chat').slideUp();
         bottle.animate({
-        	bottom:'-15px'
+        	bottom:'-40px'
         }, 'slow'); 
         bottle.removeClass('no-rotate');
         bottle.addClass('rotate');
@@ -282,25 +287,20 @@ $(document).mousedown(function (e)
 		// increase z-index to bring note to top when clicked
 
 		console.log("note");
-	    var boxes = $(".note");
+        var el = $(this), // The box that was clicked
+            max = 0;
 
-	    // Set up click handlers for each box
-	    boxes.click(function() {
-	        var el = $(this), // The box that was clicked
-	            max = 0;
+        // Find the highest z-index
+        $('.note').each(function() {
+            // Find the current z-index value
+            var z = parseInt( $( this ).css( "z-index" ), 10 );
+            // Keep either the current max, or the current z-index, whichever is higher
+            max = Math.max( max, z );
+        });
 
-	        // Find the highest z-index
-	        boxes.each(function() {
-	            // Find the current z-index value
-	            var z = parseInt( $( this ).css( "z-index" ), 10 );
-	            // Keep either the current max, or the current z-index, whichever is higher
-	            max = Math.max( max, z );
-	        });
-
-	        // Set the box that was clicked to the highest z-index plus one
-	        el.css("z-index", max + 1 );
-	        console.log(max + 1);
-	    });
+        // Set the box that was clicked to the highest z-index plus one
+        el.css("z-index", max + 1 );
+        console.log(max + 1);
     }
 });
 

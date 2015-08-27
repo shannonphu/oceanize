@@ -83,7 +83,7 @@ h1 {
 		color: black;
 	}
 	#note-title { color: black; }
-	.note-container { border-color: rgba(0,0,0,0.2); }
+	.note-container { border-color: rgba(0,0,0,0.6); }
 	#message {
 		background-color: rgba(0,0,0,0.5);
 		color: white;
@@ -170,6 +170,7 @@ h1 {
     position: fixed;
     bottom: 0;
     margin: 0;
+    z-index: 0;
 }
 
 #night-content, #day-content {
@@ -210,8 +211,8 @@ h1 {
 
 #bottle {
 	position: absolute;
-	bottom: -15px;
-	width: 2em;
+	bottom: -40px;
+	width: 20%;
 	cursor: pointer;
 }
 
@@ -331,7 +332,6 @@ h1 {
 .note {
 	height: 100px;
 	width: 200px;
-	z-index: 1;
 	padding: 5px;
 	overflow-y: scroll;
 	.border {
@@ -393,6 +393,7 @@ h1 {
 	margin: 0 10px;
 	padding: 1px;
 	border: 2px solid;
+	z-index: 3;
 }
 
 .mini-note {
