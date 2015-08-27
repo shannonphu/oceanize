@@ -33,7 +33,7 @@ setView();
 //http://cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png
 $('<img id="bottle" src="../images/anchor.png">').insertAfter($('#ocean'));
 var bottle = $('#bottle');
-bottle.css('left', $(window).width() / 6 * 5);
+bottle.css('left', $(window).width() / 4 * 3);
 bottle.addClass('rotate');
 
 // chat room initial default
@@ -131,8 +131,8 @@ $(window).resize(function () {
       $('#night-content').width($(window).width());
       $('#day-content').width($(window).width());
       var bottleMaxLeft = $(window).width() - $('.chat').outerWidth() / 2 - bottle.width() / 2;
-      if (bottleMaxLeft > $(window).width() - 100)
-      	bottleMaxLeft = $(window).width() - 100;
+      if (bottleMaxLeft > $(window).width() - $('#bottle').width())
+      	bottleMaxLeft = $(window).width() - $('#bottle').width() - 50;
       bottle.css('left', bottleMaxLeft);
       $('.chat #message').height($(window).height() * 0.6);
       $('.chat').height($(window).height() * 0.68);
@@ -274,7 +274,7 @@ $(document).mousedown(function (e)
     {
         $('.chat').slideUp();
         bottle.animate({
-        	bottom:'-40px'
+        	bottom:'-20px'
         }, 'slow'); 
         bottle.removeClass('no-rotate');
         bottle.addClass('rotate');

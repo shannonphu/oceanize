@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -75,10 +75,13 @@ io.sockets.on('connection', function (client) {
     users++;
 
     client.on('join', function(name) {
-      people[client.id] = name;
-      console.log(people);
-      io.sockets.emit("chatroom-update", people);
-      announce(name + " has joined the chat.");
+      if (people[client.id])
+      	  announce(people[client.id] + " has changed their name to " + name + ".");
+      else 
+	      announce(name + " has joined the chat.");
+
+	  people[client.id] = name;
+	  io.sockets.emit("chatroom-update", people);
     });
 
     client.on('announce', function(msg) {
@@ -101,7 +104,6 @@ io.sockets.on('connection', function (client) {
       else
         io.sockets.emit("announcement", "A stranger has left the chat.");
       delete people[client.id];
-      console.log(people);
       io.sockets.emit("chatroom-update", people);
     });
 
