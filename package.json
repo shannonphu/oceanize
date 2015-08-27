@@ -11,7 +11,7 @@
     "npm":  "1.1.x"
   },
   "scripts": {
-    "start": "npm start"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
