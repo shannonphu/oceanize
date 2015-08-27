@@ -11,6 +11,11 @@ var users = require('./routes/users');
 
 var app = express();
 
+var server = http.createServer(app); //.listen( 3000 );
+var io = require('socket.io').listen(server, function() {
+    console.log("Express server listening on port " + app.get('port'));
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -66,11 +71,6 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 // socket.io server-side
-
-var server = http.createServer(app); //.listen( 3000 );
-var io = require('socket.io').listen(server, function() {
-    console.log("Express server listening on port " + app.get('port'));
-});
 
 var users = 0;
 var people = {};
