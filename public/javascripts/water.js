@@ -7,7 +7,7 @@ $('#night-content').height($(window).height() * canvasProportion);
 
 function setView () {
 	if (dayTime) {
-		$('.header img').attr("src", "//www.starseniorcare.com/images/starseniorcare.png");
+		$('.header img').attr("src", "/images/moon.png");
 
 		$('#night-content').slideUp('slow');
 		$('#day-content').fadeIn();
