@@ -89,6 +89,8 @@ h1 {
     .day .chatroom-details input {
       color: white;
       border-color: lightgrey; }
+    .day .chatroom-details button {
+      background-color: rgba(255, 255, 255, 0.5); }
     .day .chatroom-details #chatroom-users {
       color: white; }
   .day .note input {
@@ -174,7 +176,7 @@ h1 {
 
 #bottle {
   position: absolute;
-  bottom: -20px;
+  bottom: -10px;
   width: 20%;
   cursor: pointer; }
 
@@ -193,13 +195,13 @@ h1 {
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px;
     cursor: pointer; }
-  .chatroom-details .form {
-    padding: 5px; }
-    .chatroom-details .form input {
-      border-color: black;
-      display: inline; }
-    .chatroom-details .form button {
-      display: inline; }
+  .chatroom-details input {
+    border-color: black;
+    display: inline;
+    width: 75%; }
+  .chatroom-details button {
+    display: inline;
+    width: 15%; }
   .chatroom-details #chatroom-users {
     height: 200px; }
 

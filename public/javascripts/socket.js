@@ -49,7 +49,7 @@ function appendMessage(msg) {
 function submitName() {
     var name = $('.chatroom-details input').val();
     if (name === "") {
-        $('.chatroom-details input').effect("shake");
+        $('.chatroom-details .form').effect("shake");
         return;
     }
     $('.chatroom-details input').val('');

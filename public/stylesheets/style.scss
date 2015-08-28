@@ -1,5 +1,8 @@
 $placeholder-color : white;
 $font : 'Dosis', arial, sans-serif;
+@mixin whiteOpacityBackGround($amount) {
+  background-color: rgba(255,255,255,$amount);
+}
 
 html, body {
 	padding: 0;
@@ -18,13 +21,13 @@ input {
 	width: 80%;
 	font-size: 14px;
 	background-color: transparent;
-	border:none;
+	border: none;
 	border-bottom: 1px solid white;
 	font-family: $font;
 }
 
 input:focus, button:focus, textarea:focus {
-	outline:0;
+	outline: 0;
 }
 
 ::-webkit-input-placeholder,  {
@@ -110,6 +113,7 @@ h1 {
 			color: white;
 			border-color: lightgrey;
 		}
+		button { @include whiteOpacityBackGround(0.5); }
 		#chatroom-users {
 			color: white;
 		}
@@ -127,7 +131,7 @@ h1 {
 	#note-title { color: white; }
 	.note-container { border-color: rgba(255,255,255,0.5); }
 	#message {
-		background-color: rgba(255,255,255,0.7);
+		@include whiteOpacityBackGround(0.7);
 		color: black;
 		p {
 			border-bottom: 1px solid darkgrey;
@@ -147,7 +151,7 @@ h1 {
 	}
 	
 	.chatroom-details {
-		background-color: rgba(255,255,255,0.7);
+		@include whiteOpacityBackGround(0.7);
 		.chatroom-tab { cursor: pointer; }
 		input {
 			color: black;
@@ -203,7 +207,7 @@ h1 {
 		width: 30px;
 		cursor: pointer;
 		float: right;
-		background-color: rgba(255,255,255,0.5);
+		@include whiteOpacityBackGround(0.5);
 	}
 }
 
@@ -211,7 +215,7 @@ h1 {
 
 #bottle {
 	position: absolute;
-	bottom: -20px;
+	bottom: -10px;
 	width: 20%;
 	cursor: pointer;
 }
@@ -221,26 +225,25 @@ h1 {
 	min-width: 250px;
 	max-width: 300px;
 	height: 30%;
-	background-color: rgba(255,255,255,0.7);
+	@include whiteOpacityBackGround(0.7);
 	padding: 7px;
 	margin-left: 1em;
 	position: absolute;
 	bottom: 0;
 	z-index: 5;
 	.chatroom-tab {
-		background-color: rgba(255,255,255,0.5);
+		@include whiteOpacityBackGround(0.5);
 		padding: 5px;
 		cursor: pointer;
 	}
-	.form {
-		padding: 5px;
-		input { 
-			border-color: black; 
-			display: inline;
-		}
-		button {
-			display: inline;
-		}
+	input { 
+		border-color: black; 
+		display: inline;
+		width: 75%;
+	}
+	button {
+		display: inline;
+		width: 15%;
 	}
 	#chatroom-users {
 		height: 200px;
@@ -257,7 +260,7 @@ h1 {
 
 	border: 3px solid white;
 	border-top: 3px solid black;
-	background-color: rgba(255,255,255,0.5);
+	@include whiteOpacityBackGround(0.5);
 
 	span {
 		position: absolute;
@@ -360,7 +363,7 @@ h1 {
 	textarea {
 		height: 100%;
 		width: 100%;
-		background-color: rgba(255,255,255,0.1);
+		@include whiteOpacityBackGround(0.1);
 		border: none;
 		font-size: 1em;
 		font-family: $font;
@@ -389,7 +392,7 @@ h1 {
 	position: absolute;
 	height: 300px;
 	width: 20px;
-	background-color: rgba(255,255,255,0.5);
+	@include whiteOpacityBackGround(0.5);
 	margin: 0 10px;
 	padding: 1px;
 	border: 2px solid;

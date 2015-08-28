@@ -29,12 +29,57 @@ function setView () {
 var dayTime = true;
 setView();
 
-// bottle setup
+// open chat icon setup
 //http://cliparts.co/cliparts/6ir/6xX/6ir6xXqbT.png
-$('<img id="bottle" src="../images/anchor.png">').insertAfter($('#ocean'));
+$('<img id="bottle" src="../images/boat.png">').insertAfter($('#ocean'));
 var bottle = $('#bottle');
-bottle.css('left', $(window).width() / 4 * 3);
-bottle.addClass('rotate');
+bottle.css('left', $(window).width() / 5 * 3.5);
+
+
+// var hoverBottle = function(speed){
+// 	bottle.animate({
+// 		'bottom': bottle.css('bottom') - 10
+// 	}, 'slow');
+//     bottle.animate({
+// 		'bottom': bottle.css('bottom') + 10
+//     }, 'slow');
+//     hoverBottle();
+// };
+// hoverBottle(600);
+
+// var bottleUp;
+
+// var bottleDown = function () {
+// 	console.log("down");
+//    bottle.animate({'bottom':bottle.css('bottom') - 40},
+//             400,
+//             'linear',
+//             function(){
+//                 bottleUp();
+//             });
+// };
+
+// var bottleUp = function () {
+// 		console.log("up");
+
+//    bottle.animate({'bottom':bottle.css('bottom') + 40},
+//             400,
+//             'linear',
+//             function(){
+//                 bottleDown();
+//             });
+// };
+
+// bottleUp();
+
+function pulsate(){ 
+  bottle.animate({bottom:'+=15'},1400, 'swing', function(){
+    bottle.animate({bottom:'-=15'},1100, 'swing', pulsate);
+  });
+}
+pulsate();
+
+
 
 // chat room initial default
 $('.chatroom-details').css('top', $(window).height() - $('.chatroom-details').height());
@@ -232,8 +277,6 @@ bottle.click(function() {
 	animateChatroomDetails();
 
 	// deal w/ bottle
-	bottle.removeClass('rotate');
-	bottle.addClass('no-rotate').stop();
 	if ($('.chat').length === 0) {
 		$('<div class="chat"> \
 			<span>x</span> \
@@ -274,10 +317,8 @@ $(document).mousedown(function (e)
     {
         $('.chat').slideUp();
         bottle.animate({
-        	bottom:'-20px'
+        	bottom:'-10px'
         }, 'slow'); 
-        bottle.removeClass('no-rotate');
-        bottle.addClass('rotate');
     }
     if ($('.chatroom-tab').is(e.target)) {
     	animateChatroomDetails();	
