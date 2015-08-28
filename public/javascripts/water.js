@@ -1,3 +1,5 @@
+// SET UP INITIAL DEFAULTS
+
 // Set up canvas size and sky height
 var canvasProportion = 0.7;
 $('#day-content').height($(window).height() * canvasProportion);
@@ -35,49 +37,47 @@ $('<img id="bottle" src="../images/boat.png">').insertAfter($('#ocean'));
 var bottle = $('#bottle');
 bottle.css('left', $(window).width() / 5 * 3.5);
 
-
-// var hoverBottle = function(speed){
-// 	bottle.animate({
-// 		'bottom': bottle.css('bottom') - 10
-// 	}, 'slow');
-//     bottle.animate({
-// 		'bottom': bottle.css('bottom') + 10
-//     }, 'slow');
-//     hoverBottle();
-// };
-// hoverBottle(600);
-
-// var bottleUp;
-
-// var bottleDown = function () {
-// 	console.log("down");
-//    bottle.animate({'bottom':bottle.css('bottom') - 40},
-//             400,
-//             'linear',
-//             function(){
-//                 bottleUp();
-//             });
-// };
-
-// var bottleUp = function () {
-// 		console.log("up");
-
-//    bottle.animate({'bottom':bottle.css('bottom') + 40},
-//             400,
-//             'linear',
-//             function(){
-//                 bottleDown();
-//             });
-// };
-
-// bottleUp();
-
 function pulsate(){ 
   bottle.animate({bottom:'+=15'},1400, 'swing', function(){
     bottle.animate({bottom:'-=15'},1100, 'swing', pulsate);
   });
 }
 pulsate();
+
+// Make Overlay For Instructions
+
+$('body').prepend('<div id="overlay"></div>');
+var overlay = $('#overlay');
+overlay.append('<aside id="tab">Enter your name</aside>');
+overlay.append('<aside id="ship">Click to chat</aside>');
+overlay.append('<aside id="plus">Create a <br> new note</aside>');
+overlay.append('<aside id="bar">Notes will <br> be minified <br> here</aside>');
+overlay.append('<aside id="icon">Change theme <br> between day <br> and night</aside>');
+overlay.append('<button>Got it!<aside>Click anywhere or press <br> enter to continue.</aside></button>');
+
+
+$('#ship').css({
+	bottom: $(window).height() / 4,
+	left: parseInt(bottle.css('left')) + parseInt(bottle.width() / 4)
+});
+
+$('#tab').css({
+	width: $('.chatroom-details').width(),
+	bottom: $('.chatroom-details').height() + 20,
+	left: parseInt($('.chatroom-details').css('margin-left'))
+});
+
+$('#bar').css({
+	top: $(window).height() / 3,
+	left: 50
+});
+
+$('#icon').css({
+	top: 60,
+	left: $(window).width() / 10
+});
+
+// END INITIAL SET UPS
 
 
 
@@ -179,6 +179,12 @@ $(window).resize(function () {
       if (bottleMaxLeft > $(window).width() - $('#bottle').width())
       	bottleMaxLeft = $(window).width() - $('#bottle').width() - 50;
       bottle.css('left', bottleMaxLeft);
+      if ($('#overlay').is(':visible')) {
+      	$('#ship').css({
+      		bottom: $(window).height() / 4,
+      		left: parseInt(bottle.css('left')) + parseInt(bottle.width() / 4)
+      	});
+      }
       $('.chat #message').height($(window).height() * 0.6);
       $('.chat').height($(window).height() * 0.68);
       if ($('.chat').is(':visible')) {
@@ -293,7 +299,7 @@ bottle.click(function() {
 		bottle.css('left', $(window).width() - $('.chat').outerWidth() / 2 - bottle.width() / 2);
 	}
 	bottle.animate({
-		bottom:($(window).height() - $('.header').height()) / 2 - $('#bottle').height() / 4
+		bottom:($(window).height() - $('.header').height()) / 2
 	}, 'slow'); 
 	$('.chat').slideDown();
 	if (dayTime)
@@ -304,6 +310,8 @@ bottle.click(function() {
 
 $(document).mousedown(function (e)
 {
+	if ($('#overlay').is(':visible'))
+		overlay.slideUp();
     if ($('.chat span').is(e.target) || !$('.chat').is(e.target) // if the target of the click isn't the container...
         && $('.chat').has(e.target).length === 0 // ... nor a descendant of the container
         && !$('.header img').is(e.target) // ...and isnt the change time icon 
@@ -317,7 +325,7 @@ $(document).mousedown(function (e)
     {
         $('.chat').slideUp();
         bottle.animate({
-        	bottom:'-10px'
+        	bottom: 10
         }, 'slow'); 
     }
     if ($('.chatroom-tab').is(e.target)) {
@@ -345,7 +353,7 @@ $(document).mousedown(function (e)
     }
 });
 
-$(window).bind('beforeunload', function(){
-  return 'oceanize says...';
-});
+// $(window).bind('beforeunload', function(){
+//   return 'oceanize says...';
+// });
 

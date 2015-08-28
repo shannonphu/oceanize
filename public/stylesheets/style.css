@@ -42,6 +42,7 @@ button {
   height: 25px;
   margin: 5px;
   padding: 0;
+  font-family: "Dosis", arial, sans-serif;
   cursor: pointer; }
 
 canvas {
@@ -176,7 +177,6 @@ h1 {
 
 #bottle {
   position: absolute;
-  bottom: -10px;
   width: 20%;
   cursor: pointer; }
 
@@ -244,36 +244,6 @@ h1 {
     .chat .form button {
       float: right; }
 
-.no-rotate {
-  transform: rotate(0);
-  -ms-transform: rotate(0);
-  /* IE 9 */
-  -moz-transform: rotate(0);
-  /* Firefox */
-  -webkit-transform: rotate(0);
-  /* Safari and Chrome */
-  -o-transform: rotate(0);
-  /* Opera */
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
-
-.rotate {
-  transform: rotate(25deg);
-  -ms-transform: rotate(25deg);
-  /* IE 9 */
-  -moz-transform: rotate(25deg);
-  /* Firefox */
-  -webkit-transform: rotate(25deg);
-  /* Safari and Chrome */
-  -o-transform: rotate(25deg);
-  /* Opera */
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
-
 .note {
   height: 100px;
   width: 200px;
@@ -333,5 +303,61 @@ h1 {
 
 .mini-note {
   width: 100%; }
+
+#overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10; }
+  #overlay aside {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5em;
+    position: absolute;
+    text-align: center; }
+  #overlay #plus {
+    right: 5px;
+    top: 40px; }
+  #overlay button {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    font-size: 4em;
+    font-weight: 500;
+    color: lightgrey; }
+    #overlay button aside {
+      width: 100%;
+      font-size: 0.3em; }
+
+.no-rotate {
+  transform: rotate(0);
+  -ms-transform: rotate(0);
+  /* IE 9 */
+  -moz-transform: rotate(0);
+  /* Firefox */
+  -webkit-transform: rotate(0);
+  /* Safari and Chrome */
+  -o-transform: rotate(0);
+  /* Opera */
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+
+.rotate {
+  transform: rotate(25deg);
+  -ms-transform: rotate(25deg);
+  /* IE 9 */
+  -moz-transform: rotate(25deg);
+  /* Firefox */
+  -webkit-transform: rotate(25deg);
+  /* Safari and Chrome */
+  -o-transform: rotate(25deg);
+  /* Opera */
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
 
 /*# sourceMappingURL=style.css.map */

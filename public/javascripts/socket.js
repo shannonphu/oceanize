@@ -28,10 +28,14 @@ $('body').on("click", ".msg-btn", function() {
 
 $(document).keypress(function(e) {
     if (e.which == 13) {
-        if ($('.chatroom-details input').is(':focus'))
-            submitName();
-        else if ($('.chat input').is(':focus'))
-            post();
+        if ($('#overlay').is(':visible'))
+            $('#overlay').slideUp();
+        else {
+            if ($('.chatroom-details input').is(':focus'))
+                submitName();
+            else if ($('.chat input').is(':focus'))
+                post();
+        }
     }
 });
 

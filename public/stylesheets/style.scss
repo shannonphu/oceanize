@@ -3,6 +3,9 @@ $font : 'Dosis', arial, sans-serif;
 @mixin whiteOpacityBackGround($amount) {
   background-color: rgba(255,255,255,$amount);
 }
+@mixin blackOpacityBackGround($amount) {
+  background-color: rgba(0,0,0,$amount);
+}
 
 html, body {
 	padding: 0;
@@ -54,6 +57,7 @@ button {
 	height: 25px;
 	margin: 5px;
 	padding: 0;
+	font-family: $font;
 	cursor: pointer;
 }
 
@@ -88,7 +92,7 @@ h1 {
 	#note-title { color: black; }
 	.note-container { border-color: rgba(0,0,0,0.6); }
 	#message {
-		background-color: rgba(0,0,0,0.5);
+		@include blackOpacityBackGround(0.5);
 		color: white;
 		p {
 			border-bottom: 1px solid lightgrey;
@@ -99,7 +103,7 @@ h1 {
 			color: black;
 		}
 		button {
-			background-color: rgba(0,0,0,0.5);
+			@include blackOpacityBackGround(0.5);
 			color: white;
 		}
 	}
@@ -108,7 +112,7 @@ h1 {
 	}
 	textarea { color: black; }
 	.chatroom-details {
-		background-color: rgba(0,0,0,0.5);
+		@include blackOpacityBackGround(0.5);
 		input {
 			color: white;
 			border-color: lightgrey;
@@ -215,7 +219,6 @@ h1 {
 
 #bottle {
 	position: absolute;
-	bottom: -10px;
 	width: 20%;
 	cursor: pointer;
 }
@@ -304,32 +307,6 @@ h1 {
 	}
 }
 
-// bottle rotation
-
-.no-rotate {
-	 transform: rotate(0);
-	  -ms-transform: rotate(0); /* IE 9 */
-	  -moz-transform: rotate(0); /* Firefox */
-	  -webkit-transform: rotate(0); /* Safari and Chrome */
-	  -o-transform: rotate(0); /* Opera */
-	  -webkit-transition: all 0.5s ease;
-	  -moz-transition: all 0.5s ease;
-	  -o-transition: all 0.5s ease;
-	  transition: all 0.5s ease;
-}
-
-.rotate {
-	 transform: rotate(25deg);
-	  -ms-transform: rotate(25deg); /* IE 9 */
-	  -moz-transform: rotate(25deg); /* Firefox */
-	  -webkit-transform: rotate(25deg); /* Safari and Chrome */
-	  -o-transform: rotate(25deg); /* Opera */
-	  -webkit-transition: all 0.5s ease;
-	  -moz-transition: all 0.5s ease;
-	  -o-transition: all 0.5s ease;
-	  transition: all 0.5s ease;
-}
-
 // Notes
 
 .note {
@@ -403,3 +380,62 @@ h1 {
 	width: 100%;
 }
 
+// overlay
+
+#overlay {
+	@include blackOpacityBackGround(0.4);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 10;
+	aside {
+		color: rgba(255,255,255,0.8);
+		font-size: 1.5em;
+		position: absolute;
+		text-align: center;
+	}
+	#plus {
+		right: 5px;
+		top: 40px;
+	}
+	button {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		background-color: transparent;
+		font-size: 4em;
+		font-weight: 500;
+		color: lightgrey;
+		aside {
+			width: 100%;
+			font-size: 0.3em;
+		}
+	}
+
+}
+
+// bottle rotation
+
+.no-rotate {
+	 transform: rotate(0);
+	  -ms-transform: rotate(0); /* IE 9 */
+	  -moz-transform: rotate(0); /* Firefox */
+	  -webkit-transform: rotate(0); /* Safari and Chrome */
+	  -o-transform: rotate(0); /* Opera */
+	  -webkit-transition: all 0.5s ease;
+	  -moz-transition: all 0.5s ease;
+	  -o-transition: all 0.5s ease;
+	  transition: all 0.5s ease;
+}
+
+.rotate {
+	 transform: rotate(25deg);
+	  -ms-transform: rotate(25deg); /* IE 9 */
+	  -moz-transform: rotate(25deg); /* Firefox */
+	  -webkit-transform: rotate(25deg); /* Safari and Chrome */
+	  -o-transform: rotate(25deg); /* Opera */
+	  -webkit-transition: all 0.5s ease;
+	  -moz-transition: all 0.5s ease;
+	  -o-transition: all 0.5s ease;
+	  transition: all 0.5s ease;
+}
