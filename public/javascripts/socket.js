@@ -1,5 +1,5 @@
 // Connect to the Node.js Server
-io = io.connect('//oceanize.herokuapp.com');
+io = io.connect();
 
 // initial defaults
 var nameSet = false;
