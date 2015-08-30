@@ -7,8 +7,10 @@ html, body {
 textarea {
   padding: 0.5em; }
 
+.mobile .day-content, .mobile .night-content, .mobile #bottle {
+  display: none; }
 .mobile input {
-  font-size: 2.5em; }
+  font-size: 30px; }
 .mobile h1 {
   font-size: 7em; }
 .mobile p {
@@ -25,13 +27,14 @@ textarea {
   height: 1em;
   width: 1em;
   margin: 0.5em;
-  font-size: 5em; }
+  font-size: 5em;
+  padding-bottom: 0.25em; }
 .mobile .note {
   bottom: 0;
   right: 0;
   margin-right: 1em; }
   .mobile .note input {
-    font-size: 3em; }
+    font-size: 30px; }
   .mobile .note .border {
     height: 4em; }
     .mobile .note .border .border-body {
@@ -40,22 +43,25 @@ textarea {
       font-size: 2em;
       height: inherit; }
     .mobile .note .border #delete {
-      visibility: hidden; }
+      display: none; }
   .mobile .note textarea {
     font-size: 2em; }
 .mobile .note-container {
   width: 75px;
   margin-left: 1em; }
+.mobile .chatroom-details input {
+  margin-top: 5px; }
 .mobile .chat {
   margin-left: 115px; }
   .mobile .chat span {
-    visibility: hidden; }
+    display: none; }
   .mobile .chat #message h6 {
     font-size: 3.5em; }
   .mobile .chat #message p {
     font-size: 2em; }
   .mobile .chat .form input {
-    width: 85%; }
+    width: 85%;
+    margin-top: 10px; }
 
 p {
   padding: 0;

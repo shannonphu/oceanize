@@ -2,11 +2,18 @@ doctype html
 html
 	head
 		title= title
+		meta(name='viewport', content='width=device-width, initial-scale=0.4')
 		link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Dosis')
 		link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		script(src="/socket.io/socket.io.js")
-		script(src="/javascripts/paper-full.js")
+		script(type='text/javascript').
+			if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+				console.log("desktop");
+				document.write('<script type="text/javascript" src="/javascripts/paper-full.js"><\/script>');
+				console.log("load full paper");
+			}
+
 		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
 		link(rel='stylesheet', href='https://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css')
 		script(src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js")

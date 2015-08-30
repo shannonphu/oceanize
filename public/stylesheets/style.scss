@@ -17,8 +17,9 @@ html, body {
 textarea { padding: 0.5em; }
 
 .mobile {
+	.day-content, .night-content, #bottle { display:none; }
 	input {
-		font-size: 2.5em;
+		font-size: 30px;
 	}
 	h1 {
 		font-size: 7em;
@@ -42,31 +43,38 @@ textarea { padding: 0.5em; }
 			width: 1em;
 			margin: 0.5em;
 			font-size: 5em;
+			padding-bottom: 0.25em;
 		}
 	}
 	.note {
 		bottom: 0;
 		right: 0;
 		margin-right: 1em;
-		input { font-size: 3em; }
+		input { font-size: 30px; }
 		.border {
 			height: 4em;
 			.border-body { height: 4em; }
 			button { font-size: 2em; height: inherit; }
-			#delete { visibility: hidden; }
+			#delete { display: none }
 		}
 		textarea { font-size: 2em; }
 	}
 	.note-container { width: 75px; margin-left: 1em; }
+	.chatroom-details {
+		input { margin-top: 5px; }
+	}
 	.chat {
 		margin-left: 115px;
-		span { visibility: hidden; }
+		span { display: none; }
 		#message {
 			h6 { font-size: 3.5em; }
 			p { font-size: 2em; }
 		}
 		.form {
-			input { width: 85%; }
+			input { 
+				width: 85%;
+				margin-top: 10px;
+			}
 		}
 	}
 }

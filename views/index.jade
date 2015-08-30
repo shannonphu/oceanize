@@ -15,12 +15,20 @@ block content
 			button(class="name-btn small-3 columns") Set
 		#chatroom-users
 
-	canvas(id="ocean", resize="true")
-	canvas(id="night-content", resize="true")
-	canvas(id="day-content", resize="true")
+	script(type='text/javascript').
+		if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			console.log("not mobie");
+			document.write('<script type="text/paperscript" src="javascripts/night.js" canvas="night-content"><\/script>');
+			document.write('<canvas id="night-content" resize></canvas>');
 
-	script(type="text/paperscript", src="javascripts/night.js", canvas="night-content")
-	script(type="text/paperscript", src="javascripts/day.js", canvas="day-content")
-	script(type="text/paperscript", src="javascripts/water.js", canvas="ocean")
+			document.write('<script type="text/paperscript" src="javascripts/day.js" canvas="day-content"><\/script>');
+			document.write('<canvas id="day-content" resize></canvas>');
+
+			document.write('<script type="text/paperscript" src="javascripts/water.js" canvas="ocean"><\/script>');
+			document.write('<canvas id="ocean" resize></canvas>');
+		} else {
+			console.log(" mobie");
+			document.write('<script type="text/javascript" src="javascripts/mobile-water.js"><\/script>');
+		}
 	script(src="/javascripts/notes.js")
 	script(src="/javascripts/socket.js")

@@ -1,7 +1,7 @@
 var mobile = false;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) 
     mobile = true;
-var mobileNoteWidth = 7 * $(window).width() / 9 - $('.chatroom-details').innerWidth();
+var mobileNoteWidth = 8 * $(window).width() / 9 - $('.chatroom-details').innerWidth();
 var miniNoteCount = 0;
 var miniNotes = [];
 var NOTE_CONTENT = {
