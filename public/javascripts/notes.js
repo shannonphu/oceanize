@@ -1,4 +1,7 @@
-var initDimension = 100;
+var mobile = false;
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) 
+    mobile = true;
+var mobileNoteWidth = 7 * $(window).width() / 9 - $('.chatroom-details').innerWidth();
 var miniNoteCount = 0;
 var miniNotes = [];
 var NOTE_CONTENT = {
@@ -7,7 +10,12 @@ var NOTE_CONTENT = {
 	BORDER_COLOR: 2
 };
 
-$('#note-btn').click(function() {
+$('#note-btn').click(function(event) {
+    if (mobile) {
+        var success = minimizeNote($('body').find('.note'));
+        if (!success)
+            return;
+    }
 	makeNote();
 });
 
@@ -35,20 +43,26 @@ $(document).on('click', '.note', function() {
 });
 
 // delete note clicked delete on
-$(document).on('click', '.note aside', function() {
-    $(this).parent().remove();
+$(document).on('click', '.note #delete', function() {
+    $(this).closest($('.note')).remove();
 });
 
 // minimize note
-$(document).on('click', '.note .border button', function() {
-    var thisNote = $(this).closest('.note');
+$(document).on('click', '.note #mini', function(event) {
+    var success = minimizeNote($(event.target));
+    if (mobile && success)
+        makeNote();
+});
+
+function minimizeNote(target) {
+    var thisNote = target.closest('.note');
     var noteInfo = [];
     noteInfo[NOTE_CONTENT.TITLE] = thisNote.find('input').val();
     noteInfo[NOTE_CONTENT.TEXT] = thisNote.find('textarea').val();
     noteInfo[NOTE_CONTENT.BORDER_COLOR] = thisNote.find('.border-body').css('background-color');
     if (noteInfo[NOTE_CONTENT.TITLE] === "" && noteInfo[NOTE_CONTENT.TEXT] === "") {
-    	thisNote.effect("shake");
-    	return;
+        thisNote.effect("shake");
+        return false;
     }
     // store contents in array
     miniNotes.push(noteInfo);
@@ -59,10 +73,11 @@ $(document).on('click', '.note .border button', function() {
     var miniNote = $('<div class="mini-note"></div>').css( 'background-color', overallColor );
     $('.note-container').append(miniNote);
     $('.mini-note').animate({
-    	height: $('.note-container').height() / miniNoteCount
+        height: $('.note-container').height() / miniNoteCount
     });
     thisNote.remove();
-});
+    return true;
+}
 
 $(document).on('click', '.note-container .mini-note', function() {
 	var index = $(this).index();
@@ -70,12 +85,19 @@ $(document).on('click', '.note-container .mini-note', function() {
 	var title = thisMiniNote[NOTE_CONTENT.TITLE];
 	var text = thisMiniNote[NOTE_CONTENT.TEXT];
 
+    if (mobile) {
+        var success = minimizeNote($('body').find('.note'));
+        if (!success)
+            $('body').find('.note').remove();
+    }
+
 	var expandedNote = makeNote($(this).css('background-color'), thisMiniNote[NOTE_CONTENT.BORDER_COLOR]);
 	expandedNote.find('input').val(title);
 	expandedNote.find('textarea').text(text);
 
 	miniNotes.splice(index, 1);
 	miniNoteCount--;
+
 	$(this).remove();
 	$('.mini-note').animate({
 		height: $('.note-container').height() / miniNoteCount
@@ -100,27 +122,43 @@ $(document).on("mouseenter", ".mini-note", function() {
 function makeNote(color, borderColor) {
 	color = typeof color !== 'undefined' ? color : randomColor();
 	borderColor = typeof borderColor !== 'undefined' ? borderColor : randomColor();
-    var posx = randomX();
-    var posy = randomY();
-    var newNote = $("<div class='note draggable resizable ui-widget-content' style='border:none;background:none;'> \
-    	<div class='border'><button>—</button><div class='border-body'></div></div> \
-    	<input type='text' placeholder='Title'></input> \
-    	<aside>Delete</aside> \
-    	<textarea></textarea> \
-    	</div>")
-    .css('position', 'absolute')
-    .appendTo('.header')
-   	.css({
-        'left': posx + 'px',
-         'top': posy + 'px',
-         'z-index': 1,
-         'background-color': color
+
+    var newNote = addNoteDiv();
+    newNote.css({
+        'position': 'absolute',
+        'background-color': color,
+        'z-index': 1,
     });
+    if (mobile) {
+        newNote.css({
+            'height': $('.chatroom-details').height(),
+            'width': mobileNoteWidth,
+        });
+    } else {
+        var posx = randomX();
+        var posy = randomY();
+       	newNote.css({
+            'left': posx + 'px',
+             'top': posy + 'px',
+        });
+    }
    	newNote.find('.border-body').css('background-color', borderColor);
-   	newNote.find('button').css('background-color', borderColor);
+   	newNote.find('#mini').css('background-color', borderColor);
     $( ".draggable" ).draggable();
     $( ".resizable" ).resizable();
     return newNote;
+}
+
+if (mobile)
+    makeNote();
+
+function addNoteDiv() {
+    return $("<div class='note draggable resizable ui-widget-content' style='border:none;background:none;'> \
+            <div class='border'><button id='mini'>—</button><button id='delete'>x</button><div class='border-body'></div></div> \
+            <input type='text' placeholder='Title'></input> \
+            <textarea></textarea> \
+            </div>")
+        .appendTo('body');
 }
 
 function randomColor() {

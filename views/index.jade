@@ -7,10 +7,12 @@ block content
 		button(id="note-btn") +
 		
 	.chatroom-details
-		.chatroom-tab Members
-		.form
-			input(type=text placeholder="Name")
-			button(class="name-btn") Set
+		.chatroom-tab 
+			p
+				| Members
+		.form.row
+			input(type=text placeholder="Name" class="small-8 columns")
+			button(class="name-btn small-3 columns") Set
 		#chatroom-users
 
 	canvas(id="ocean", resize="true")

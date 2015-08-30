@@ -1,5 +1,9 @@
+var mobile = false;
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) 
+	mobile = true;
+
 // The amount of stars and clouds we want to make:
-var starCount = 30;
+var starCount = mobile ? 50 : 30;
 
 // Create a symbol, which we will use to place instances of later:
 var starPath = new Path.Circle({
@@ -20,22 +24,26 @@ for (var i = 0; i < starCount; i++) {
 
 // The onFrame function is called up to 60 times a second:
 function onFrame(event) {
-	// Run through the active layer's children list and change
-	// the position of the placed symbols:
-	for (var i = 0; i < starCount; i++) {
-		var item = project.activeLayer.children[i];
-		moveLayerRight(item);
+	if(!mobile) {
+		// Run through the active layer's children list and change
+		// the position of the placed symbols:
+		for (var i = 0; i < starCount; i++) {
+			var item = project.activeLayer.children[i];
+			moveLayerRight(item);
+		}
 	}
 }
 
 function moveLayerRight(item) {
-	// Move the item 1/20th of its width to the right. This way
-	// larger circles move faster than smaller circles:
-	item.position.x += item.bounds.width / 20;
+	if(!mobile) {
+		// Move the item 1/20th of its width to the right. This way
+		// larger circles move faster than smaller circles:
+		item.position.x += item.bounds.width / 20;
 
-	// If the item has left the view on the right, move it back
-	// to the left:
-	if (item.bounds.left > view.size.width) {
-		item.position.x = -item.bounds.width;
+		// If the item has left the view on the right, move it back
+		// to the left:
+		if (item.bounds.left > view.size.width) {
+			item.position.x = -item.bounds.width;
+		}
 	}
 }
